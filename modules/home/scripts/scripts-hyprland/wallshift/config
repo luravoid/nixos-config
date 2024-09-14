@@ -1,0 +1,22 @@
+# Wallpapers directory
+wallpaper_dir="$HOME/Pictures/Backgrounds"
+
+# Select between hyprpaper and swww
+tool="hyprpaper"
+
+# Default wallpaper
+default_wallpaper="wall2.png"
+
+# Mapa obszarów roboczych do tapet
+declare -A wallpaper_map
+wallpaper_map["1"]="wall1.jpg"
+wallpaper_map["2"]="wall1.jpg"
+wallpaper_map["3"]="wall2.png"
+wallpaper_map["4"]="wall30.jpg"
+wallpaper_map["5"]="wall26.jpg"
+wallpaper_map["6"]="wall1.jpg"
+wallpaper_map["7"]="wall14.jpg"
+wallpaper_map["8"]="wall17.jpg"
+wallpaper_map["9"]="wall1.jpg"
+wallpaper_map["10"]="wall26.jpg"
+wallpaper_map["OVERVIEW"]="wall11.jpg"

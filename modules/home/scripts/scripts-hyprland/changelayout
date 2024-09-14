@@ -1,0 +1,129 @@
+#!/bin/bash
+
+LAYOUT=$(hyprctl -j getoption general:layout | jq '.str' | sed 's/"//g')
+
+case $LAYOUT in
+"master")
+	hyprctl keyword general:layout dwindle
+
+	# Unbind
+	hyprctl keyword unbind SUPER,H
+	hyprctl keyword unbind SUPER,J
+	hyprctl keyword unbind SUPER,K
+	hyprctl keyword unbind SUPER,L
+
+	hyprctl keyword unbind SUPER SHIFT,H
+	hyprctl keyword unbind SUPER SHIFT,J
+	hyprctl keyword unbind SUPER SHIFT,K
+	hyprctl keyword unbind SUPER SHIFT,L
+
+	hyprctl keyword unbind SUPER ALT,H
+	hyprctl keyword unbind SUPER ALT,J
+	hyprctl keyword unbind SUPER ALT,K
+	hyprctl keyword unbind SUPER ALT,L
+
+	hyprctl keyword unbind SUPER,I
+	hyprctl keyword unbind SUPER,D
+
+	#hyprctl keyword unbind SUPER SHIFT,Return
+	#hyprctl keyword unbind SUPER ALT,Return
+
+	hyprctl keyword unbind SUPER ALT,M
+	hyprctl keyword unbind SUPER ALT,T
+	hyprctl keyword unbind SUPER ALT,up
+	hyprctl keyword unbind SUPER ALT,down
+	hyprctl keyword unbind SUPER ALT,right
+
+	hyprctl keyword unbind SUPER SHIFT,P
+
+	# Bind
+	hyprctl keyword bind SUPER,H,movefocus, l
+	hyprctl keyword bind SUPER,J,movefocus, d
+	hyprctl keyword bind SUPER,K,movefocus, u
+	hyprctl keyword bind SUPER,L,movefocus, r
+
+	hyprctl keyword bind SUPER SHIFT,H,movewindow, l
+	hyprctl keyword bind SUPER SHIFT,J,movewindow, d
+	hyprctl keyword bind SUPER SHIFT,K,movewindow, u
+	hyprctl keyword bind SUPER SHIFT,L,movewindow, r
+
+	hyprctl keyword bind SUPER ALT,H,resizeactive,-100 0
+	hyprctl keyword bind SUPER ALT,J,resizeactive,0 80
+	hyprctl keyword bind SUPER ALT,K,resizeactive,0 -80
+	hyprctl keyword bind SUPER ALT,L,resizeactive,100 0
+
+	hyprctl keyword bind SUPER,I,togglesplit
+	hyprctl keyword bind SUPER,D,pseudo
+
+	#hyprctl keyword bind SUPER SHIFT,Return
+	#hyprctl keyword bind SUPER ALT,Return
+
+	hyprctl keyword bind SUPER SHIFT,P,exec,hyprctl dispatch workspaceopt allpseudo
+
+	hyprctl notify -1 1500 "rgb(98971a)" "Layout" "Dwindle"
+	;;
+
+"dwindle")
+	hyprctl reload
+	#hyprctl keyword general:layout master
+
+	# Unbind
+	#hyprctl keyword unbind SUPER,H
+	#hyprctl keyword unbind SUPER,J
+	#hyprctl keyword unbind SUPER,K
+	#hyprctl keyword unbind SUPER,L
+
+	#hyprctl keyword unbind SUPER SHIFT,H
+	#hyprctl keyword unbind SUPER SHIFT,J
+	#hyprctl keyword unbind SUPER SHIFT,K
+	#hyprctl keyword unbind SUPER SHIFT,L
+
+	#hyprctl keyword unbind SUPER ALT,H
+	#hyprctl keyword unbind SUPER ALT,J
+	#hyprctl keyword unbind SUPER ALT,K
+	#hyprctl keyword unbind SUPER ALT,L
+
+	#hyprctl keyword unbind SUPER,I
+	#hyprctl keyword unbind SUPER,D
+
+	#hyprctl keyword unbind SUPER SHIFT,Return
+	#hyprctl keyword unbind SUPER ALT,Return
+
+	#hyprctl keyword unbind SUPER ALT,M
+	#hyprctl keyword unbind SUPER ALT,T
+	#hyprctl keyword unbind SUPER ALT,up
+	#hyprctl keyword unbind SUPER ALT,down
+	#hyprctl keyword unbind SUPER ALT,right
+
+	#hyprctl keyword unbind SUPER SHIFT,P
+
+	# Bind
+	#hyprctl keyword binde SUPER,H,resizeactive, -100 0
+	#hyprctl keyword bind SUPER,J,layoutmsg,cyclenext
+	#hyprctl keyword bind SUPER,K,layoutmsg,cycleprev
+	#hyprctl keyword binde SUPER,L,resizeactive, 100 0
+
+	#hyprctl keyword binde SUPER SHIFT,H,resizeactive, 0 80
+	#hyprctl keyword bind SUPER SHIFT,J,layoutmsg,swapnext
+	#hyprctl keyword bind SUPER SHIFT,K,layoutmsg,swapprev
+	#hyprctl keyword binde SUPER SHIFT,L,resizeactive, 0 -80
+
+	#hyprctl keyword bind SUPER,I,layoutmsg,addmaster
+	#hyprctl keyword bind SUPER,D,layoutmsg,removemaster
+
+	# TODO - ZGŁOŚ BUG NA GITHUBIE, ŻE SWAPWITHMASTER I FOCUSMASTER PO PONOWNYM PRZYPISANIU NIE DZIAŁAJĄ POPRAWNIE.
+	#hyprctl keyword bind SUPER SHIFT,Return,layoutmsg,swapwithmaster
+	#hyprctl keyword bind SUPER ALT,Return,layoutmsg,focusmaster
+
+	#hyprctl keyword bind SUPER ALT,M,layoutmsg,orientationcenter
+	#hyprctl keyword bind SUPER ALT,T,layoutmsg,orientationleft
+
+	#hyprctl keyword bind SUPER ALT,up,layoutmsg,orientationtop
+	#hyprctl keyword bind SUPER ALT,down,layoutmsg,orientationbottom
+	#hyprctl keyword bind SUPER ALT,right,layoutmsg,orientationright
+
+	hyprctl notify -1 1500 "rgb(98971a)" "Layout" "Master"
+	;;
+*) ;;
+
+esac

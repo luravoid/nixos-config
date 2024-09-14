@@ -1,0 +1,9 @@
+#!/bin/bash
+
+workspaces=$(hyprctl -j workspacerules | jq -r '.[] | select(.workspaceString | startswith("special")) | .workspaceString' | sed 's/special://' | nl -n ln -w 1 -s ' | ')
+selected=$(echo "$workspaces" | tofi --height 280 --width 300 --prompt-text='Select:')
+
+if [ -n "$selected" ]; then
+    selected=$(echo "$selected" | sed 's/^[0-9]* | //')
+    hyprctl dispatch togglespecialworkspace "$selected"
+fi

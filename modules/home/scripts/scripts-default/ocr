@@ -1,0 +1,19 @@
+#!/bin/bash
+# Dependencies: grimblast-git, tesseract-ocr, wl-clipboard
+
+TEMP_SCREENSHOT=$(mktemp /tmp/screenshot-XXXXXX.png) # Temporary file for screenshot
+
+grimblast --freeze copysave area "$TEMP_SCREENSHOT" > /dev/null 2>&1 || { echo "No screenshot taken."; rm "$TEMP_SCREENSHOT"; exit 1; }
+
+OCR_RESULT=$(tesseract -l pol "$TEMP_SCREENSHOT" stdout 2>/dev/null) # OCR
+rm "$TEMP_SCREENSHOT" # Clean up screenshot file
+
+if [ -n "$OCR_RESULT" ]; then
+    echo "$OCR_RESULT" | tr -d "\n" | wl-copy # Copy to clipboard
+    echo "$OCR_RESULT" # Output OCR result to terminal
+    notify-send "Text copied to clipboard" 
+else
+    echo "No text found."
+    notify-send "No text found" 
+fi
+

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+selected_file=$(find ~ -type f | fzf)
+if [ -n "$selected_file" ]; then
+    echo "Selected: $selected_file"
+    read -p "Open with: " command
+    $command "$selected_file"
+fi
+

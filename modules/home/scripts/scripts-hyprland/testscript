@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# Pobierz informacje o aktywnym workspace w formacie JSON
+workspace_info=$(hyprctl -j activeworkspace)
+
+# Wydobądź ID aktywnego workspace
+workspace_id=$(echo "$workspace_info" | jq -r '.id')
+
+# Zdefiniuj ścieżkę do zdjęcia na podstawie ID workspace
+image_path=""
+
+case $workspace_id in
+    1)
+        image_path="~/Pictures/collage/collage2.jpg"
+        ;;
+    2)
+        image_path="~/Pictures/collage/ws3/2.jpeg"
+        ;;
+    3)
+        image_path="~/Pictures/collage/ws3/3.jpeg"
+        ;;
+    4)
+        image_path="~/Pictures/collage/collage37.jpg"
+        ;;
+    5)
+        image_path="~/Pictures/collage/green/11.jpg"
+        ;;
+    *)
+        image_path="~/Pictures/collage/ws3/2.jpeg"
+        ;;
+esac
+
+# Uruchom Rofi z wybranym zdjęciem
+rofi -show drun -theme '~/.config/rofi/themes/launcher2.rasi' -theme-str "imagebox {
+ background-image: url('$image_path', width);}" 

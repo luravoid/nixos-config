@@ -1,0 +1,9 @@
+#!/bin/bash
+
+hyprctl keyword windowrulev2 "workspace special:obsidian silent,class:(obsidian)"
+
+obsidian "obsidian://advanced-uri?vault=Obsidian&filepath=06%2520Notes%252FBazgralnik.md&openmode=window"
+#obsidian "obsidian://advanced-uri?vault=Obsidian&filepath=11%2520Canvas%252FScratchpad.canvas&openmode=window"
+#obsidian "obsidian://advanced-uri?vault=Obsidian&filepath=06%2520Notes%252FBazgralnik.md&commandname=Quick Switcher++: Open in Standard Mode&openmode=window"
+
+hyprctl keyword windowrulev2 "workspace 5,class:(obsidian)"

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+active=$(hyprctl -j monitors | jq -r '.[] | select(.focused==true).specialWorkspace.name')
+
+if [[ $active != "" ]]; then
+    if [[ $active == "special:"* ]]; then
+        active=${active#special:}
+    elif [[ $active == "special" ]]; then
+        active=""
+    fi
+    hyprctl dispatch togglespecialworkspace "$active"
+else
+    hyprctl dispatch focusworkspaceoncurrentmonitor previous
+fi

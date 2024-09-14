@@ -1,0 +1,6 @@
+#!/bin/bash
+
+brave --app=https://chat.openai.com &
+brave --app=https://gemini.google.com &
+microsoft-edge-stable --app=https://copilot.microsoft.com &
+#brave --app=https://copilot.microsoft.com &

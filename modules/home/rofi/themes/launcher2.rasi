@@ -1,0 +1,214 @@
+/*****----- Configuration -----*****/
+configuration {
+	modi:                       "drun,run,window";
+    show-icons:                 true;
+    display-drun:               "APPS";
+    display-run:                "RUN";
+    display-window:             "WINDOW";
+	drun-display-format:        "{name}";
+	window-format:              "{w} · {c} · {t}";
+    show-icons: 					false;
+}
+
+@import "colors.rasi"
+
+/*****----- Global Properties -----*****/
+* {
+    font:                        "Iosevka 12";
+}
+
+/*****----- Main Window -----*****/
+window {
+    /* properties for window widget */
+    transparency:                "real";
+    location:                    center;
+    anchor:                      center;
+    fullscreen:                  false;
+    width:                       910px;
+    x-offset:                    0px;
+    y-offset:                    0px;
+
+    /* properties for all widgets */
+    enabled:                     true;
+    border: 					 1px;
+    border-color: 				 @foreground;
+    border-radius:               0px;
+    cursor:                      "default";
+    background-color:            @background;
+}
+
+/*****----- Main Box -----*****/
+mainbox {
+    enabled:                     true;
+    spacing:                     0px;
+    background-color:            transparent;
+    orientation:                 horizontal;
+    children:                    [ "containerbox", "listbox"];
+}
+
+containerbox {
+    orientation:                 vertical;
+    background-color:            transparent;
+    spacing:                     0px;
+    padding:                     0px;
+    children:                    [ "inputbar", "imagebox", "mode-switcher" ];
+}
+
+
+imagebox {
+    padding:                     0px;
+    background-color:            transparent;
+    background-image:            url("~/Pictures/collage/ws3/3.jpeg", height);
+    orientation:                 vertical;
+    border: 					 0px 0px 1px 0px;
+    border-color: 				 @foreground;
+ 
+}
+
+listbox {
+    spacing:                     5px;
+    padding:                     10px;
+    background-color:            transparent;
+    border: 					 0px 0px 0px 1px;
+    border-color: 				 @foreground;
+    orientation:                 vertical;
+    children:                    [ "message", "listview"];
+}
+
+dummy {
+    background-color:            transparent;
+}
+
+/*****----- Inputbar -----*****/
+inputbar {
+    enabled:                     true;
+    spacing:                     10px;
+    padding:                     8px;
+    border: 					 0px 0px 1px 0px;
+    border-color: 				 @foreground;
+    border-radius:               0px;
+    background-color:            @background;
+    text-color:                  @foreground;
+    children:                    [ "textbox-prompt-colon", "entry" ];
+}
+textbox-prompt-colon {
+    enabled:                     true;
+    expand:                      false;
+    str:                         "";
+    background-color:            inherit;
+    text-color:                  inherit;
+}
+entry {
+    enabled:                     true;
+    background-color:            inherit;
+    text-color:                  inherit;
+    cursor:                      text;
+    placeholder:                 "Search";
+    placeholder-color:           inherit;
+}
+
+/*****----- Mode Switcher -----*****/
+mode-switcher{
+    enabled:                     true;
+    spacing:                     0px;
+    background-color:            transparent;
+    text-color:                  @foreground;
+}
+button {
+    padding:                     5px;
+    border-radius:               0px;
+    background-color:            @background;
+    text-color:                  inherit;
+    cursor:                      pointer;
+}
+button selected {
+    background-color:            @foreground;
+    text-color:                  @background;
+}
+
+/*****----- Listview -----*****/
+listview {
+    enabled:                     true;
+    columns:                     1;
+    lines:                       12;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-width:                true;
+    fixed-columns:               true;
+    
+    spacing:                     5px;
+    background-color:            transparent;
+    text-color:                  @foreground;
+    cursor:                      "default";
+}
+
+/*****----- Elements -----*****/
+element {
+    enabled:                     true;
+    spacing:                     8px;
+    padding:                     5px;
+    border-radius:               0px;
+    background-color:            transparent;
+    text-color:                  @foreground;
+    cursor:                      pointer;
+}
+element normal.normal {
+    background-color:            inherit;
+    text-color:                  inherit;
+}
+element normal.urgent {
+    background-color:            @urgent;
+    text-color:                  @foreground;
+}
+element normal.active {
+    background-color:            @on;
+    text-color:                  @foreground;
+}
+element selected.normal {
+    background-color:            @foreground;
+    text-color:                  @background;
+}
+element selected.urgent {
+    background-color:            @urgent;
+    text-color:                  @foreground;
+}
+element selected.active {
+    background-color:            @urgent;
+    text-color:                  @foreground;
+}
+element-icon {
+    background-color:            transparent;
+    text-color:                  inherit;
+    size:                        32px;
+    cursor:                      inherit;
+}
+element-text {
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+}
+
+/*****----- Message -----*****/
+message {
+    background-color:            transparent;
+}
+textbox {
+    padding:                     15px;
+    border-radius:               0px;
+    background-color:            @background;
+    text-color:                  @foreground;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+}
+error-message {
+    padding:                     15px;
+    border-radius:               0px;
+    background-color:            @background;
+    text-color:                  @foreground;
+}

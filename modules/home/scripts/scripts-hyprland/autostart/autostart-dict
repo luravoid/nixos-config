@@ -1,0 +1,5 @@
+#!/bin/bash
+
+foot -T dictionary -a dictionary sdcv -c &
+foot -T translate -a translate trans -I -s pl &
+

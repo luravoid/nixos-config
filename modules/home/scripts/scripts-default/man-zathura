@@ -1,0 +1,4 @@
+#!/bin/sh
+# Search manpage in dmenu and open it on zathura
+manpage=$(man -k . | rofi -theme "$HOME/.config/rofi/themes/launcher.rasi" -dmenu -p "Search man" -i -l 10 | awk '{ print $1 }')
+if [ -z "$manpage" ]; then exit; else man -Tpdf "$manpage" | zathura - & fi

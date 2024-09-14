@@ -1,0 +1,77 @@
+#!/bin/bash
+
+silent_in=false
+silent_out=false
+arg=""
+active_window=$(hyprctl -j activewindow | jq -r '.workspace.name')
+active_workspace=$(hyprctl -j activeworkspace | jq -r '.name')
+
+move_with_launcher() {
+  special_workspaces=$(hyprctl -j workspacerules | jq -r '.[] | select(.workspaceString | startswith("special")) | .workspaceString' | sed 's/special://' | nl -n ln -w 1 -s ' | ')  
+  if [[ "$active_window" == *"special"* ]]; then
+      if $silent_out ; then
+          hyprctl dispatch movetoworkspacesilent "$active_workspace"
+      else
+          hyprctl dispatch movetoworkspace "$active_workspace"
+      fi
+  else
+      chosen_workspace=$(echo "$special_workspaces" | tofi --height 280 --width 300 --prompt-text='Select:')
+      if [ -n "$chosen_workspace" ]; then
+        chosen_workspace=$(echo "$chosen_workspace" | sed 's/^[0-9]* | //')
+        if $silent_in ; then
+            hyprctl dispatch movetoworkspacesilent "special:$chosen_workspace"
+        else
+            hyprctl dispatch movetoworkspace "special:$chosen_workspace"
+        fi
+      fi
+  fi
+}
+
+move_to_special() {
+  if [[ "$active_window" == *"special"* ]]; then
+      if $silent_out ; then
+          hyprctl dispatch movetoworkspacesilent "$active_workspace"
+      else
+          hyprctl dispatch movetoworkspace "$active_workspace"
+      fi
+  else
+      if $silent_in ; then
+          hyprctl dispatch movetoworkspacesilent "$arg"
+      else
+          hyprctl dispatch movetoworkspace "$arg"
+      fi
+  fi
+}
+
+while (( "$#" )); do
+  case "$1" in
+    --silent|-s)
+      if [ "$2" == "in" ]; then
+        silent_in=true
+        shift
+      fi
+      if [ "$2" == "out" ]; then
+        silent_out=true
+        shift
+      fi
+      shift
+      ;;
+    --launcher|-l)
+      move_with_launcher
+      exit 0
+      ;;
+    *)
+      arg="$1"
+      shift
+      ;;
+  esac
+done
+
+move_to_special
+
+
+
+
+
+
+

@@ -1,0 +1,57 @@
+#!/bin/sh
+
+# Reset plików
+for monitor in $(hyprctl -j monitors | jq -r '.[].id'); do
+    echo "" > "/tmp/windowstate_$monitor"
+done
+
+# TODO - separate outputs
+
+handle() {
+	case $1 in
+	activewindow* | fullscreen* | changefloatingmode*)
+		# Pobierz ID monitorów
+		monitors=$(hyprctl -j monitors | jq -r '.[].id')
+
+		for monitor in $monitors; do
+			# Pobierz aktywny workspace lub special workspace na monitorze
+			active_workspace=$(hyprctl -j monitors | jq -r --argjson monitor "$monitor" '
+				.[] | select(.id == $monitor) | 
+				if .specialWorkspace.id != 0 then 
+					.specialWorkspace.id 
+				else 
+					.activeWorkspace.id 
+				end')
+
+			# Pobierz ostatnie okno na aktywnym workspace
+			lastwindow=$(hyprctl -j workspaces | jq -r --argjson workspace "$active_workspace" '.[] | select(.id == $workspace) | .lastwindow')
+
+			# Pobierz stan ostatniego okna
+			fullscreen=$(hyprctl -j clients | jq -r --arg lastwindow "$lastwindow" 'map(select(.address == $lastwindow)) | .[0].fullscreen')
+			floating=$(hyprctl -j clients | jq -r --arg lastwindow "$lastwindow" 'map(select(.address == $lastwindow)) | .[0].floating')
+
+			if [ "$fullscreen" = 1 ] || [ "$fullscreen" = 2 ]; then
+				if [ "$floating" = true ]; then
+					output="Floating - Fullscreen"
+				else
+					output="Fullscreen"
+				fi
+			elif [ "$floating" = true ]; then
+				output="Floating"
+			elif [ "$floating" = false ]; then
+				output="Tiled"
+			else
+				output=""
+			fi
+
+			# Zapisz wynik do pliku specyficznego dla monitora
+			echo "$output" > "/tmp/windowstate_$monitor"
+		done
+
+		# Wyślij sygnał do Waybara
+		pkill -RTMIN+8 waybar
+		;;
+	esac
+}
+
+socat -U - UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock | while read -r line; do handle "$line"; done

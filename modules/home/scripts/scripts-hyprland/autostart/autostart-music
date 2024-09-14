@@ -1,0 +1,5 @@
+#!/bin/bash
+
+spotify &
+sleep 0.3
+foot -T spotify_tui -a spotify_tui spotify_player &

@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Path to the directory where color icons will be stored
+ICON_DIR="$HOME/.local/share/color_icons"
+
+# Create the directory for icons if it doesn't exist
+mkdir -p $ICON_DIR
+
+if [[ "$1" == "-h" || "$1" == "--history" ]]; then
+    # Find all saved colors and sort them by modification time (newest first)
+    colors=$(find "$ICON_DIR" -type f -printf "%T@ %p\n" | sort -nr | cut -d' ' -f2-)
+
+    # Display menu (with icons) to select a color
+    chosen_color=$(for a in $colors; do
+        color="#${a##*/}"
+        color="${color%.png}"
+        echo -en "$color\0icon\x1f$a\n"
+    done | rofi -dmenu -i -p "COLORS" -theme ~/.config/rofi/themes/wallpaper.rasi)
+
+    # Copy the selected color to the clipboard (if something was selected)
+    if [ -n "$chosen_color" ]; then
+        echo $chosen_color | tr -d "\n" | wl-copy
+        notify-send -i "$ICON_DIR/${chosen_color#'#'}.png" "Copied to clipboard" "$chosen_color"
+    fi
+else
+    # Pick a color using hyprpicker
+    color=$(hyprpicker -a)
+    
+    # Generate an icon for this color
+    icon_path="$ICON_DIR/$(echo $color | tr -d '#').png"
+    magick -size 100x100 xc:$color $icon_path
+
+    # Remove the oldest color if there are more than 50
+    color_count=$(find "$ICON_DIR" -type f | wc -l)
+    if [ "$color_count" -gt 50 ]; then  # <-- Change this value to any number you prefer
+        oldest_color=$(find "$ICON_DIR" -type f -printf "%T@ %p\n" | sort -n | head -n 1 | cut -d' ' -f2-)
+        rm "$oldest_color"
+    fi
+
+    # Send a notification with the new color
+    notify-send -i $icon_path "Copied to clipboard" "$color"
+fi
+
+
+
+# hyprpicker -a | xargs -I {} sh -c 'magick -size 100x100 xc:{} /tmp/color.png && notify-send -i /tmp/color.png "{}"'

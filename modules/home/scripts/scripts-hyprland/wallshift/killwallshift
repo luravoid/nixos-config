@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+pkill -f wallshift
+
+pkill -f hyprpaper 
+
+sleep 0.1
+
+hyprpaper &

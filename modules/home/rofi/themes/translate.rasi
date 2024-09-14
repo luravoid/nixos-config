@@ -1,0 +1,65 @@
+/*****----- Configuration -----*****/
+configuration {
+    show-icons:                 false;
+}
+
+@import "colors.rasi"
+
+/*****----- Global Properties -----*****/
+* {
+    font:                        "Iosevka 12";
+}
+
+/*****----- Main Window -----*****/
+window {
+    location:                    center;
+    anchor:                      center;
+    fullscreen:                  false;
+    width:                       400px;
+    border:                      1px;
+    border-color: 				 @foreground;
+    background-color:            @background;
+}
+
+/*****----- Main Box -----*****/
+mainbox {
+    background-color:            transparent;
+    children:                    [ "prompt", "inputbar" ];
+}
+
+prompt {
+    spacing: 						15px;
+    border: 						0;
+    background-color:             	@background;
+    text-color: 					@foreground;
+    padding:    					7px;
+}
+
+/*****----- Inputbar -----*****/
+inputbar {
+    enabled:                     true;
+    spacing:                     15px;
+    padding:                     8px 8px 8px 8px;
+    border:                      1px 0px 0px 0px;
+    border-color: 				    @foreground;
+    background-color:            @background;
+    text-color:                  @foreground;
+    children:                    [ "textbox-prompt-colon", "entry" ];
+}
+
+textbox-prompt-colon {
+    enabled:                     false;
+    expand:                      false;
+    str:                         "";
+    background-color:            inherit;
+    text-color:                  inherit;
+}
+
+entry {
+    enabled:                     true;
+    background-color:            inherit;
+    text-color:                  inherit;
+    cursor:                      text;
+    placeholder:                 "Type...";
+    placeholder-color:           inherit;
+}

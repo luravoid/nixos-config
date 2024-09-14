@@ -1,0 +1,6 @@
+#!/bin/bash
+
+hyprctl -j activewindow >/tmp/activewindow.json
+
+foot -T wininfo -a wininfo jless /tmp/activewindow.json
+
