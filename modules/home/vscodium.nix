@@ -60,6 +60,9 @@ in
 
       # nvim
       asvetliakov.vscode-neovim
+
+      # alejandra
+      kamadorueda.alejandra
     ];
     userSettings = {
       "update.mode" = "none";
