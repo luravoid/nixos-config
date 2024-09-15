@@ -78,6 +78,8 @@ in
     zotero
     microsoft-edge
     font-manager
+    anki-bin
+    stremio
 
     # C / C++
     gcc
