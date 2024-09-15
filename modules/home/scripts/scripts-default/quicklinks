@@ -12,7 +12,7 @@ if [ "$1" == "--foot" ]; then
 elif [ "$1" == "--kitty" ]; then
   NVIM="kitty --class neovim -e nvim"
   FM="kitty --class yazi -e yazi"
-  LAUNCHER="$rofi_command"
+  LAUNCHER="$tofi_command"
 elif [ "$1" == "--alacritty" ]; then
   NVIM="alacritty --class neovim -e nvim"
   FM="alacritty --class yazi -e yazi"
@@ -55,6 +55,7 @@ options=(
   "AGS-RESTART:               ags_restart &"
   "AGS-KILL:                  pkill ags"
   "BLUETOOTH:                 rofi-bluetooth"
+  "GIT-REPO:                  xdg-open https://github.com/luravoid/nixos-config"
   #"DUNSTRC:                   cd ~/.config/dunst && $NVIM dunstrc"
   #"FOOT:                      cd ~/.config/foot && $NVIM foot.ini"
   #"TOFI:                      cd ~/.config/tofi && $NVIM ."
