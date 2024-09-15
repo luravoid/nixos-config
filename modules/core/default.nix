@@ -15,5 +15,6 @@
     ./wayland.nix
     ./virtualization.nix
     ./bluetooth.nix
+    ./syncthing.nix
   ];
 }
