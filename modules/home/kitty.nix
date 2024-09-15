@@ -6,13 +6,13 @@
     theme = "Gruvbox Dark Hard";
     
     font = {
-      name = "FiraCode Nerd Font";
-      size = if (host == "laptop") then 11 else 12;
+      name = "Terminess Nerd Font";
+      size = if (host == "laptop") then 11 else 13.5;
     };
 
     settings = {
       confirm_os_window_close = 0;
-      background_opacity = "0.75";
+      background_opacity = "0.9";
       window_padding_width = 10;
       scrollback_lines = 10000;
       enable_audio_bell = false;
