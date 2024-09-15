@@ -5,32 +5,37 @@ dmenu_command="dmenu -l 25 -i -p "Q-LINKS:""
 tofi_command="tofi --width 300 --height 300 --prompt-text="Q-LINKS:""
 hypr_scripts="~/.config/hypr/scripts"
 
-if [ "$1" == "--wayland" ]; then
+if [ "$1" == "--foot" ]; then
   NVIM="foot -T neovim -a neovim nvim"
   FM="foot -T yazi -a yazi yazi"
   LAUNCHER="$tofi_command"
-elif [ "$1" == "--x11" ]; then
+elif [ "$1" == "--kitty" ]; then
+  NVIM="kitty --class neovim -e nvim"
+  FM="kitty --class yazi -e yazi"
+  LAUNCHER="$rofi_command"
+elif [ "$1" == "--alacritty" ]; then
   NVIM="alacritty --class neovim -e nvim"
   FM="alacritty --class yazi -e yazi"
   LAUNCHER="$rofi_command"
 else
   echo "Options:"
-  echo "--wayland"
-  echo "--x11"
+  echo "--foot"
+  echo "--kitty"
+  echo "--alacritty"
   exit 1
 fi
 
 function ags_restart() {
-    if pgrep "ags" > /dev/null; then
-        pkill ags
-    fi
-    ags -c ~/nixos-config/modules/ags/config.js &
+  if pgrep "ags" >/dev/null; then
+    pkill ags
+  fi
+  ags -c ~/nixos-config/modules/ags/config.js &
 }
 
 # Define options in a format "label:command"
 options=(
-  "NIXOS-VSCODE:              cd ~/nixos-config && codium ~/nixos-config"
   "NIXOS-NEOVIM:              cd ~/nixos-config && $NVIM ."
+  "NIXOS-VSCODE:              cd ~/nixos-config && codium ~/nixos-config"
   "HYPRLAND:                  cd ~/nixos-config && $NVIM ~/nixos-config/modules/home/hyprland"
   "HYPRKEYS:                  cd ~/nixos-config && $NVIM ~/nixos-config/modules/home/hyprland/config/keybindings.nix"
   ".CONFIG:                   $FM ~/.config"

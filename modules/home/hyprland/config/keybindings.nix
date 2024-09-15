@@ -30,7 +30,7 @@
     "$mainMod CTRL, slash, exec, ocr"
 
 #== Rofi scripts ==================================================================================
-    "$mainMod CTRL, D, exec, pkill tofi || quicklinks --wayland"
+    "$mainMod CTRL, D, exec, pkill tofi || quicklinks --kitty"
     "$mainMod CTRL, X, exec, pkill tofi || powermenu"
     "$mainMod CTRL, C, exec, pkill tofi || cliphist list | tofi | cliphist decode | wl-copy"
     "$mainMod CTRL, W, exec, pkill tofi || focuswindow tofi"
