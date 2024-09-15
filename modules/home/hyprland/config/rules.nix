@@ -113,6 +113,7 @@
   layerrule = [
     "blur, waybar"
     "blur, rofi"
+    "blur, launcher"
     "dimaround, launcher"
     "noanim, launcher"
     "animation slide right, swaync-control-center"
