@@ -15,8 +15,8 @@
         desc = "Go to the home directory";
       }
       { on = ["g" "n"];
-        run = "cd nixos-config";
-        desc = "Go to the home directory";
+        run = "cd ~/nixos-config";
+        desc = "Go to the nixos config directory";
       }
       {
         on = ["g" "c"];
