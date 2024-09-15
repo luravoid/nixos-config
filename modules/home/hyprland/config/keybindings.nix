@@ -161,6 +161,9 @@
     "$mainMod ALT, left, layoutmsg, orientationleft"
     "$mainMod ALT, right, layoutmsg, orientationright"
 
+
+#== Plugins =======================================================================================
+    "$mainMod, Z, exec, easymotion"
   ];
 
   bindl = [

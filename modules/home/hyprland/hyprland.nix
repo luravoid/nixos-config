@@ -1,5 +1,10 @@
-{ inputs, pkgs, ...}: 
 {
+  inputs,
+  pkgs,
+  ...
+}: let
+  hypreasymotion = pkgs.callPackage ../../../pkgs/hyprland-easymotion/default.nix {};
+in {
   home.packages = with pkgs; [
     # swww
     #swaybg
@@ -7,7 +12,7 @@
     hyprpicker
     grim
     slurp
-   # wl-clip-persist
+    # wl-clip-persist
     wf-recorder
     glib
     wayland
@@ -15,7 +20,7 @@
     lxqt.lxqt-policykit
     swappy
   ];
-  systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
+  systemd.user.targets.hyprland-session.Unit.Wants = ["xdg-desktop-autostart.target"];
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland = {
@@ -25,13 +30,17 @@
     # enableNvidiaPatches = false;
     systemd.enable = true;
 
-    settings = import ./config/autostart.nix // 
-            import ./config/rules.nix // 
-            import ./config/keybindings.nix // 
-            import ./config/general.nix // 
-            import ./config/input.nix // 
-            import ./config/animations.nix // 
-            import ./config/decoration.nix;
+    plugins = with pkgs; [hypreasymotion];
+
+    settings =
+      import ./config/autostart.nix
+      // import ./config/rules.nix
+      // import ./config/keybindings.nix
+      // import ./config/general.nix
+      // import ./config/input.nix
+      // import ./config/animations.nix
+      // import ./config/decoration.nix
+      // import ./config/plugins.nix;
 
     extraConfig = "
       monitor=,preferred,auto,auto
