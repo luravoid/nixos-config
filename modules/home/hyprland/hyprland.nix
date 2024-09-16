@@ -20,6 +20,18 @@ in {
     lxqt.lxqt-policykit
     swappy
   ];
+
+  imports = [
+    ./config/autostart.nix
+    ./config/input.nix
+    ./config/general.nix
+    ./config/decoration.nix
+    ./config/animations.nix
+    ./config/keybindings.nix
+    ./config/rules.nix
+    ./config/plugins.nix
+  ];
+
   systemd.user.targets.hyprland-session.Unit.Wants = ["xdg-desktop-autostart.target"];
   wayland.windowManager.hyprland = {
     enable = true;
@@ -31,16 +43,6 @@ in {
     systemd.enable = true;
 
     plugins = with pkgs; [hypreasymotion];
-
-    settings =
-      import ./config/autostart.nix
-      // import ./config/rules.nix
-      // import ./config/keybindings.nix
-      // import ./config/general.nix
-      // import ./config/input.nix
-      // import ./config/animations.nix
-      // import ./config/decoration.nix
-      // import ./config/plugins.nix;
 
     extraConfig = "
       monitor=,preferred,auto,auto

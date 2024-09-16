@@ -1,48 +1,50 @@
 {
-  exec-once = [
-    # System
-    "systemctl --user import-environment &"
-    "hash dbus-update-activation-environment 2>/dev/null &"
-    "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &"
-    "poweralertd &"
+  wayland.windowManager.hyprland.settings = {
+    exec-once = [
+      # System
+      "systemctl --user import-environment &"
+      "hash dbus-update-activation-environment 2>/dev/null &"
+      "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &"
+      "poweralertd &"
 
-    # Bar
-    "waybar &"
+      # Bar
+      "waybar &"
 
-    # Notifications
-    "swaync &"
+      # Notifications
+      "swaync &"
 
-    # Systray applets
-    "nm-applet &"
-    "blueman-applet &"
+      # Systray applets
+      "nm-applet &"
+      "blueman-applet &"
 
-    # Clipboard manager
-    "wl-clip-persist --clipboard both"
-    "wl-paste --watch cliphist store &"
+      # Clipboard manager
+      "wl-clip-persist --clipboard both"
+      "wl-paste --watch cliphist store &"
 
-    # Pyprland
-    "pypr &"
-    
-    # Wallpaper
-    "hyprpaper &"
+      # Pyprland
+      "pypr &"
 
-    # Cursor
-    "hyprctl setcursor Bibata-Modern-Ice 24 &"
+      # Wallpaper
+      "hyprpaper &"
 
-    # Sprawn programs
-    "[workspace 5 silent] obsidian"
+      # Cursor
+      "hyprctl setcursor Bibata-Modern-Ice 24 &"
 
-    # Lock
-    "hyprlock"
+      # Sprawn programs
+      "[workspace 5 silent] obsidian"
 
-    # Polkit
-    "lxqt-policykit-agent"
+      # Lock
+      "hyprlock"
 
-    # Scripts
-    "windowstate &"
-    "toggleurgent &"
-    "groupbind-run &"
-    # "[workspace 1 silent] floorp"
-    # "[workspace 2 silent] kitty"
-  ];
+      # Polkit
+      "lxqt-policykit-agent"
+
+      # Scripts
+      "windowstate &"
+      "toggleurgent &"
+      "groupbind-run &"
+      # "[workspace 1 silent] floorp"
+      # "[workspace 2 silent] kitty"
+    ];
+  };
 }
