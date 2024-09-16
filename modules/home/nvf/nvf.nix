@@ -6,6 +6,7 @@
   imports = [
     inputs.nvf.homeManagerModules.default
     ./plugins
+    ./mappings
   ];
 
   programs.nvf = {
