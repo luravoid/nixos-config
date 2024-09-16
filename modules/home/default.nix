@@ -1,7 +1,6 @@
 {inputs, username, host, ...}: {
   imports = [
     ./ags.nix                         # widgets
-    ./atuin.nix                       # atuin
     ./bat.nix                         # better cat command
     ./btop.nix                        # resouces monitor 
     ./cava.nix                        # audio visualizer

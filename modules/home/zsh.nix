@@ -1,5 +1,10 @@
-{ hostname, config, pkgs, host, ...}: 
 {
+  hostname,
+  config,
+  pkgs,
+  host,
+  ...
+}: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -7,7 +12,7 @@
     syntaxHighlighting.enable = true;
     oh-my-zsh = {
       enable = true;
-      plugins = [ ];
+      plugins = [];
     };
     initExtraFirst = ''
       DISABLE_AUTO_UPDATE=true
@@ -15,7 +20,7 @@
       export "MICRO_TRUECOLOR=1"
     '';
     initExtra = ''
-      setopt share_history 
+      setopt share_history
       setopt hist_expire_dups_first
       setopt hist_ignore_dups
       setopt hist_verify
@@ -29,7 +34,7 @@
 
       # vi-mode
       source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-      
+
       # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
       # - The first argument to the function ($1) is the base path to start traversal
       # - See the source code (completion.{bash,zsh}) for the details.
@@ -92,6 +97,11 @@
   };
 
   programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.atuin = {
     enable = true;
     enableZshIntegration = true;
   };
