@@ -13,6 +13,8 @@
     nix-gaming.url = "github:fufexan/nix-gaming";
 
     ags.url = "github:Aylur/ags";
+
+    nvf.url = "github:notashelf/nvf";
   
     hyprland = {
       type = "git";

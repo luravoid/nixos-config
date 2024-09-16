@@ -18,6 +18,7 @@
     ./kitty.nix                       # terminal
     ./foot.nix                        # terminal
     ./swaync/swaync.nix               # notification deamon
+    ./nvf.nix                         # neovim config framework
     ./micro.nix                       # nano replacement
     ./lazyvim/nvim.nix                        # neovim editor
     ./packages.nix                    # other packages
