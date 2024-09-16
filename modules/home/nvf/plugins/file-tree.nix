@@ -12,7 +12,7 @@
       };
     };
 
-    maps.normal."<C-e>" = {
+    maps.normal."<leader>e" = {
       desc = "Toggle Neotree";
       action = "<cmd>Neotree toggle reveal<cr>";
     };

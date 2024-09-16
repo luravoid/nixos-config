@@ -13,6 +13,7 @@
     enable = true;
     settings = {
       vim.viAlias = true;
+      vim.leaderKey = " ";
     };
   };
 }
