@@ -1,8 +1,8 @@
 {
   imports = [
     ./autopairs.nix
-    ./comment-nvim.nix
+    ./cmp.nix
+    ./comment.nix
     ./git.nix
-    ./nvim-cmp.nix
   ];
 }
