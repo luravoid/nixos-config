@@ -5,6 +5,6 @@
     ./lang
     ./theme
     ./ui
-    ./utility.nix
+    ./util
   ];
 }

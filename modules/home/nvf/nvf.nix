@@ -14,6 +14,7 @@
     settings = {
       vim.viAlias = true;
       vim.leaderKey = " ";
+      vim.useSystemClipboard = true;
     };
   };
 }
