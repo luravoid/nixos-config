@@ -6,5 +6,6 @@
     ./lsp.nix
     ./telescope.nix
     ./treesitter.nix
+    ./utility.nix
   ];
 }
