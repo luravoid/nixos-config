@@ -5,5 +5,6 @@
     ./terminal.nix
     ./todo-comments.nix
     ./which-key.nix
+    ./yazi.nix
   ];
 }
