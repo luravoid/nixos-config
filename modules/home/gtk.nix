@@ -1,12 +1,15 @@
-{ pkgs, config, ... }:
-let 
-  monolisa = pkgs.callPackage ../../pkgs/monolisa/monolisa.nix {}; 
-  monolisa-nerd = pkgs.callPackage ../../pkgs/monolisa/monolisa-nerd.nix { inherit monolisa; }; 
-in
 {
+  pkgs,
+  config,
+  ...
+}: let
+  monolisa = pkgs.callPackage ../../pkgs/monolisa/monolisa.nix {};
+  monolisa-nerd = pkgs.callPackage ../../pkgs/monolisa/monolisa-nerd.nix {inherit monolisa;};
+  gruvbox-material-gtk = pkgs.callPackage ../../pkgs/gruvbox-material-gtk.nix {};
+in {
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" "NerdFontsSymbolsOnly" ]; })
+    (nerdfonts.override {fonts = ["JetBrainsMono" "FiraCode" "NerdFontsSymbolsOnly"];})
     twemoji-color-font
     noto-fonts-emoji
     # monolisa
@@ -24,16 +27,12 @@ in
       size = 12;
     };
     theme = {
-      name = "Gruvbox-Dark";
-      package = pkgs.gruvbox-gtk-theme.override {
-        colorVariants = [ "dark" ];
-      };
+      name = "Gruvbox-Material-Dark";
+      package = gruvbox-material-gtk;
     };
     iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme.override {
-        color = "black";
-      };
+      name = "Gruvbox-Material-Dark";
+      package = gruvbox-material-gtk;
     };
     cursorTheme = {
       name = "Bibata-Modern-Ice";
@@ -41,7 +40,7 @@ in
       size = 24;
     };
   };
-  
+
   home.pointerCursor = {
     name = "Bibata-Modern-Ice";
     package = pkgs.bibata-cursors;
