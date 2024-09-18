@@ -30,6 +30,8 @@
       # https://github.com/jeffreytse/zsh-vi-mode/issues/57
       function zvm_after_init() {
         zvm_bindkey viins '^@' autosuggest-accept
+        zvm_bindkey viins '^r' atuin-search
+        zvm_bindkey vicmd '^r' atuin-search
       }
 
       # vi-mode
