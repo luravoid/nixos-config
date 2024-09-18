@@ -73,6 +73,7 @@ in
     zenity
     xfce.thunar
     xfce.xfconf
+    xfce.tumbler
     obsidian
     calibre
     zotero
