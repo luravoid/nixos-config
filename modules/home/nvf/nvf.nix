@@ -11,10 +11,10 @@
 
   programs.nvf = {
     enable = true;
-    settings = {
-      vim.viAlias = true;
-      vim.leaderKey = " ";
-      vim.useSystemClipboard = true;
+    settings.vim = {
+      viAlias = true;
+      leaderKey = " ";
+      useSystemClipboard = true;
     };
   };
 }
