@@ -7,6 +7,7 @@
     ./coding/git.nix
 
     # editor
+    ./editor/cheatsheet.nix
     ./editor/neo-tree.nix
     ./editor/telescope.nix
     ./editor/terminal.nix
@@ -25,6 +26,7 @@
     # ui
     #./ui/bufferline.nix
     ./ui/dashboard.nix
+    ./ui/icons.nix
     ./ui/illuminate.nix
     ./ui/indent-blankline.nix
     ./ui/lualine.nix
