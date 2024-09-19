@@ -9,7 +9,12 @@
     extraPlugins = with pkgs.vimPlugins; {
       gruvbox-material-nvim = {
         package = gruvbox-material-nvim;
-        setup = "vim.cmd.colorscheme 'gruvbox-material'";
+        setup = "require('gruvbox-material').setup({
+                  background = {
+                    transparent = true,
+                  },
+                })
+                vim.cmd.colorscheme 'gruvbox-material'";
       };
     };
   };
