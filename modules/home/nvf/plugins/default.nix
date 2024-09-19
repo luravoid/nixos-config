@@ -20,9 +20,6 @@
     ./lang/lsp.nix
     ./lang/treesitter.nix
 
-    # theme
-    ./theme/theme.nix
-
     # ui
     #./ui/bufferline.nix
     ./ui/dashboard.nix
@@ -32,6 +29,7 @@
     ./ui/lualine.nix
     ./ui/noice.nix
     ./ui/nvim-notify.nix
+    ./ui/theme.nix
 
     # util
     ./util/image.nix
