@@ -105,7 +105,7 @@
       "special:tasks,gapsin:7,gapsout:64,on-created-empty:brave --app=https://app.todoist.com"
       "special:dict,gapsin:7,gapsout:64,on-created-empty:autostart-dict"
       "special:type,gapsin:7,gapsout:64,on-created-empty:brave --app=https://monkeytype.com"
-      "special:sound,on-created-empty:foot -T pulsemixer -a pulsemixer pulsemixer"
+      "special:sound,on-created-empty:kitty --title pulsemixer --class pulsemixer -e pulsemixer"
 
       "s[false] f[1],gapsin:0,gapsout:0"
     ];

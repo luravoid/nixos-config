@@ -2,5 +2,5 @@
 
 hyprctl -j activewindow >/tmp/activewindow.json
 
-foot -T wininfo -a wininfo jless /tmp/activewindow.json
+kitty --title wininfo --class wininfo -e jless /tmp/activewindow.json
 

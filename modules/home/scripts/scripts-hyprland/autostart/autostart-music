@@ -2,4 +2,4 @@
 
 spotify &
 sleep 0.3
-foot -T spotify_tui -a spotify_tui spotify_player &
+kitty --title spotify_tui -class spotify_tui -e spotify_player &

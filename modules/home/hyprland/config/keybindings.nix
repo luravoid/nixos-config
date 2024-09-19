@@ -24,8 +24,8 @@
       "$mainMod, P, exec, pkill tofi || tofi-run | xargs hyprctl dispatch exec"
       "$mainMod, $mainMod_L, exec, pkill tofi || tofi-drun --drun-launch=true"
       #"$mainMod, $mainMod_L, exec, pkill rofi || testscript"
-      "$mainMod, R, exec, foot -T yazi -a yazi yazi"
-      "$mainMod, C, exec, foot -T neovim -a neovim nvim"
+      "$mainMod, R, exec, kitty --class yazi -e yazi"
+      "$mainMod, C, exec, kitty --class neovim -e nvim"
 
       #== Scripts =======================================================================================
       "$mainMod CTRL, slash, exec, ocr"

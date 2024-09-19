@@ -74,7 +74,7 @@
         hide-input = false;
         hidden-character = "*";
         drun-launch = false;
-        terminal = "foot";
+        terminal = "kitty";
         late-keyboard-init = false;
         multi-instance = false;
         ascii-input = false;

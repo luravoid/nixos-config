@@ -20,7 +20,7 @@
       new_window_takes_over_fullscreen = 1;
       #initial_workspace_tracking = 0;
       #enable_swallow = true;
-      #swallow_regex = foot;
+      #swallow_regex = kitty;
     };
   };
 }
