@@ -6,13 +6,11 @@
   hypreasymotion = pkgs.callPackage ../../../pkgs/hyprland-easymotion/default.nix {};
 in {
   home.packages = with pkgs; [
-    # swww
-    #swaybg
     inputs.hypr-contrib.packages.${pkgs.system}.grimblast
     hyprpicker
     grim
     slurp
-    # wl-clip-persist
+    wl-clip-persist
     wf-recorder
     glib
     wayland
