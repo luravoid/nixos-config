@@ -43,8 +43,6 @@
       "windowstate &"
       "toggleurgent &"
       "groupbind-run &"
-      # "[workspace 1 silent] floorp"
-      # "[workspace 2 silent] kitty"
     ];
   };
 }
