@@ -7,31 +7,31 @@ def run_command(command):
     return subprocess.check_output(command, shell=True).decode('utf-8')
 
 def arrange_windows(orientation):
-    # Marginesy
+    # Margins
     outer_margin = 100
     inner_margin = 18
 
-    # Pobierz informacje o aktywnym workspace
+    # Fetch information about the active workspace
     workspace_info = json.loads(run_command('hyprctl -j activeworkspace'))
     workspace_id = workspace_info['id']
 
-    # Pobierz informacje o monitorze
+    # Fetch information about the monitor
     monitor_info = [m for m in json.loads(run_command('hyprctl -j monitors')) if m['focused']][0]
     monitor_width = monitor_info['width'] - 2 * outer_margin
     monitor_height = monitor_info['height'] - 2 * outer_margin
 
-    # Pobierz informacje o oknach
+    # Fetch information about the windows
     windows_info = [w for w in json.loads(run_command('hyprctl -j clients')) if w['workspace']['id'] == workspace_id and w['floating']]
 
-    # Oblicz ilość okien
+    # Calculate the number of windows
     windows_count = len(windows_info)
 
-    # Jeżeli nie ma okien, zakończ skrypt
+    # If there are no windows, terminate the script
     if windows_count == 0:
         print("Brak okien do ułożenia.")
         exit(0)
 
-    # Oblicz wymiary dla okien
+    # Calculate window dimensions
     if orientation == 'vertical' and windows_count == 2:
         rows = 1
     else:
@@ -40,27 +40,27 @@ def arrange_windows(orientation):
     window_width = (monitor_width - (cols - 1) * inner_margin) // cols
     window_height = (monitor_height - (rows - 1) * inner_margin) // rows
 
-    # Zmienne do przechowywania aktualnej pozycji
+    # Variables to store the current position
     current_x = outer_margin
     current_y = outer_margin
 
-    # Iteruj po oknach
+    # Iterate over the windows
     for i, window in enumerate(windows_info):
         window_address = window['address']
 
-        # Sprawdź, czy jesteśmy w ostatnim rzędzie i czy jest on pełny
+        # Check if we are in the last row and if it's full
         if orientation == 'horizontal' and (i // cols + 1) == rows and windows_count % cols != 0:
             window_width = (monitor_width - (windows_count % cols - 1) * inner_margin) // (windows_count % cols)
         elif orientation == 'vertical' and (i // rows + 1) == cols and windows_count % rows != 0:
             window_height = (monitor_height - (windows_count % rows - 1) * inner_margin) // (windows_count % rows)
 
-        # Zmień rozmiar okna
+        # Resize the window
         run_command(f'hyprctl dispatch resizewindowpixel "exact {window_width} {window_height},address:{window_address}"')
 
-        # Przesuń okno
+        # Move the window
         run_command(f'hyprctl dispatch movewindowpixel "exact {current_x} {current_y},address:{window_address}"')
 
-        # Aktualizuj pozycję dla następnego okna
+        # Update position for the next window
         if orientation == 'horizontal':
             current_x += window_width + inner_margin
             if (i + 1) % cols == 0:
