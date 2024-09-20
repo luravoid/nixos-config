@@ -1,12 +1,9 @@
 #!/bin/sh
 
-# Pobierz informacje o aktywnym workspace w formacie JSON
 workspace_info=$(hyprctl -j activeworkspace)
 
-# Wydobądź ID aktywnego workspace
 workspace_id=$(echo "$workspace_info" | jq -r '.id')
 
-# Zdefiniuj ścieżkę do zdjęcia na podstawie ID workspace
 image_path=""
 
 case $workspace_id in
@@ -30,6 +27,5 @@ case $workspace_id in
         ;;
 esac
 
-# Uruchom Rofi z wybranym zdjęciem
 rofi -show drun -theme '~/.config/rofi/themes/launcher2.rasi' -theme-str "imagebox {
  background-image: url('$image_path', width);}" 

@@ -17,7 +17,7 @@ toggle_urgent() {
         original_workspace=$(awk '{print $2}' "$urgent_file")
         active_workspace=$(hyprctl -j activeworkspace | jq -r '.id')
 
-        # Sprawdzenie, czy okno znajduje się na aktywnym workspace
+        # Check if the window is on the active workspace
         is_on_active_workspace=$(hyprctl -j clients | jq -r --arg ADDRESS "$address" --arg WORKSPACE "$active_workspace" \
             '.[] | select(.address == $ADDRESS and .workspace.id == ($WORKSPACE | tonumber))')
 
@@ -35,7 +35,7 @@ send_back() {
     local address="$1"
     local original_workspace="$2"
 
-    # Sprawdzenie, czy okno znajduje się w pliku store_file
+    # Check if the window is in the store_file
     found_in_store=$(grep "$address" "$store_file")
 
     if [ ! -z "$found_in_store" ]; then
@@ -67,7 +67,7 @@ handle() {
             address=0x$(echo "$1" | cut -d',' -f1 | cut -d'>' -f3)
             original_workspace=$(hyprctl -j clients | jq -r --arg ADDRESS "$address" '.[] | select(.address == $ADDRESS) | .workspace.name')
 
-            # Wyczyść plik urgent_file
+            # Clear the urgent_file
             > "$urgent_file"
 
             echo "$address $original_workspace" >>"$urgent_file"

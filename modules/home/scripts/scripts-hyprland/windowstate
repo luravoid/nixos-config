@@ -1,20 +1,18 @@
 #!/bin/sh
 
-# Reset plików
+# Reset files
 for monitor in $(hyprctl -j monitors | jq -r '.[].id'); do
     echo "" > "/tmp/windowstate_$monitor"
 done
 
-# TODO - separate outputs
-
 handle() {
 	case $1 in
 	activewindow* | fullscreen* | changefloatingmode*)
-		# Pobierz ID monitorów
+		# Fetch monitor IDs
 		monitors=$(hyprctl -j monitors | jq -r '.[].id')
 
 		for monitor in $monitors; do
-			# Pobierz aktywny workspace lub special workspace na monitorze
+			# Fetch the active workspace or special workspace on the monitor
 			active_workspace=$(hyprctl -j monitors | jq -r --argjson monitor "$monitor" '
 				.[] | select(.id == $monitor) | 
 				if .specialWorkspace.id != 0 then 
@@ -23,10 +21,10 @@ handle() {
 					.activeWorkspace.id 
 				end')
 
-			# Pobierz ostatnie okno na aktywnym workspace
+			# Fetch the last window on the active workspace
 			lastwindow=$(hyprctl -j workspaces | jq -r --argjson workspace "$active_workspace" '.[] | select(.id == $workspace) | .lastwindow')
 
-			# Pobierz stan ostatniego okna
+			# Fetch the state of the last window
 			fullscreen=$(hyprctl -j clients | jq -r --arg lastwindow "$lastwindow" 'map(select(.address == $lastwindow)) | .[0].fullscreen')
 			floating=$(hyprctl -j clients | jq -r --arg lastwindow "$lastwindow" 'map(select(.address == $lastwindow)) | .[0].floating')
 
@@ -44,11 +42,11 @@ handle() {
 				output=""
 			fi
 
-			# Zapisz wynik do pliku specyficznego dla monitora
+			# Save the result to a monitor-specific file
 			echo "$output" > "/tmp/windowstate_$monitor"
 		done
 
-		# Wyślij sygnał do Waybara
+		# Send a signal to waybar
 		pkill -RTMIN+8 waybar
 		;;
 	esac
