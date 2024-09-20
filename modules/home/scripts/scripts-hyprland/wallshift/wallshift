@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Wczytaj plik konfiguracyjny
+# Load the config
 source "$HOME/nixos-config/modules/home/scripts/scripts-hyprland/wallshift/config"
 
 declare -A last_set_wallpaper
