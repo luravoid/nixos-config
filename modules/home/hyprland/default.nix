@@ -1,8 +1,7 @@
-{ inputs, ... }: 
-{
+{inputs, ...}: {
   imports = [
+    ./hypridle.nix
     ./hyprland.nix
-  #  ./config.nix
     ./hyprlock.nix
     ./hyprpaper.nix
     ./pyprland.nix

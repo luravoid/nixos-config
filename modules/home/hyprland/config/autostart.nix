@@ -13,6 +13,9 @@
       # Notifications
       "swaync &"
 
+      # Power manager
+      "hypridle &"
+
       # Systray applets
       "nm-applet &"
       "blueman-applet &"
