@@ -25,6 +25,11 @@
       setopt hist_ignore_dups
       setopt hist_verify
 
+      # plugins
+      source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+      source "${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh"
+      source "${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use/you-should-use.plugin.zsh"
+
       # zsh-autosuggestions - use ctrl + space
       #bindkey '^ ' autosuggest-accept
       # https://github.com/jeffreytse/zsh-vi-mode/issues/57
@@ -33,9 +38,6 @@
         zvm_bindkey viins '^r' atuin-search
         zvm_bindkey vicmd '^r' atuin-search
       }
-
-      # vi-mode
-      source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
       # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
       # - The first argument to the function ($1) is the base path to start traversal
