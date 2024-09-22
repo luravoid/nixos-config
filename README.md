@@ -1,20 +1,20 @@
 # 🗃️ Overview
 
-## 📚 Layout
+## Layout
 
 -   [flake.nix](flake.nix) base of the configuration
--   [hosts](hosts) 🌳 per-host configurations that contain machine specific configurations
-    - [desktop](hosts/desktop/) 🖥️ Desktop specific configuration
-    - [laptop](hosts/laptop/) 💻 Laptop specific configuration
-    - [vm](hosts/vm/) 🗄️ VM specific configuration
--   [modules](modules) 🍱 modularized NixOS configurations
-    -   [core](modules/core/) ⚙️ Core NixOS configuration
-    -   [homes](modules/home/) 🏠 my [Home-Manager](https://github.com/nix-community/home-manager) config
--   [pkgs](flake/pkgs) 📦 Packages Build from source
--   [wallpapers](wallpapers/) 🌄 wallpapers collection
+-   [hosts](hosts) per-host configurations that contain machine specific configurations
+    - [desktop](hosts/desktop/) Desktop specific configuration
+    - [laptop](hosts/laptop/) Laptop specific configuration
+    - [vm](hosts/vm/) VM specific configuration
+-   [modules](modules) modularized NixOS configurations
+    -   [core](modules/core/) Core NixOS configuration
+    -   [homes](modules/home/) my [Home-Manager](https://github.com/nix-community/home-manager) config
+-   [pkgs](flake/pkgs) Packages Build from source
+-   [wallpapers](wallpapers/) wallpapers collection
 
 
-# 🚀 Installation 
+# Installation 
 
 > [!CAUTION]
 > Applying custom configurations, especially those related to your operating system, can have unexpected consequences and may interfere with your system's normal behavior. While I have tested these configurations on my own setup, there is no guarantee that they will work flawlessly for you.
@@ -101,7 +101,7 @@ Now you will need to choose the host you want. It depend on whether you are usin
 
 Lastly, it will build the system, which includes both the flake config and home-manager config.
 
-# 👥 Credits
+# Credits
 
 - Nix Flakes
   - [Frost-Phoenix/nixos-config](https://github.com/Frost-Phoenix/nixos-config): My config is a fork of these dotfiles, which is where I began my NixOS journey.
