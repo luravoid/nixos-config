@@ -86,16 +86,15 @@ install() {
     echo -e "Creating folders:"
     echo -e "    - ${MAGENTA}~/Music${NORMAL}"
     echo -e "    - ${MAGENTA}~/Documents${NORMAL}"
-    echo -e "    - ${MAGENTA}~/Pictures/wallpapers/others${NORMAL}"
+    echo -e "    - ${MAGENTA}~/Pictures/wallpapers/nixos${NORMAL}"
     mkdir -p ~/Music
     mkdir -p ~/Documents
-    mkdir -p ~/Pictures/wallpapers/others
+    mkdir -p ~/Pictures/wallpapers/nixos
     sleep 0.2
 
     # Copy the wallpapers
     echo -e "Copying all ${MAGENTA}wallpapers${NORMAL}"
-    cp -r wallpapers/wallpaper.png ~/Pictures/wallpapers
-    cp -r wallpapers/otherWallpaper/nixos/* ~/Pictures/wallpapers/others/
+    cp -r wallpapers/nixos/* ~/Pictures/wallpapers/nixos/
     sleep 0.2
 
     # Get the hardware configuration
