@@ -26,21 +26,30 @@ const setImageDimensions = (imageConfig, element, button) => {
   button.css = `background-color: transparent;
                 border: none;
                 border-radius: 1.5rem;
+                box-shadow: none;
                 min-width: ${width}px;
                 min-height: ${height}px;`;
 };
 
 const createWidget = (config, index) => {
+  const shadowBox = Widget.Box({
+    hpack: "fill",
+    vpack: "fill",
+    vertical: true,
+    css: `background-color: transparent;
+          border: none;
+          border-radius: 1.5rem;
+          margin: 15px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);`
+  });
+
   const backgroundBox = Widget.Box({
     hpack: "fill",
     vpack: "fill",
     vertical: true,
-    css: `border-radius: 1.5rem;`,
   });
 
   const invisibleButton = Widget.Button({
-    css: `background-color: transparent;
-          border: none;`,
     onClicked: () => {
       currentImageIndices[index] = (currentImageIndices[index] + 1) % config.images.length;
       console.log(`Changing image to: ${config.images[currentImageIndices[index]].path}`);
@@ -60,16 +69,17 @@ const createWidget = (config, index) => {
 
   backgroundBox.children = [invisibleButton];
 
-  // Set initial image dimensions
   setImageDimensions(config.images[currentImageIndices[index]], backgroundBox, invisibleButton);
+
+  shadowBox.children = [backgroundBox];
 
   return Widget.Window({
     name: `window${index}`,
     layer: "bottom",
     anchor: ['top', 'left'],
     css: `background-color:transparent;`,
-    margins: config.margins, // Adding margins directly here
-    child: backgroundBox,
+    margins: config.margins,
+    child: shadowBox,
     gdkmonitor: config.monitor
   });
 };
