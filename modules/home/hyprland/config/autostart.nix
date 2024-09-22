@@ -18,8 +18,8 @@
       "blueman-applet &"
 
       # Clipboard manager
-      "wl-clip-persist --clipboard both"
       "wl-paste --watch cliphist store &"
+      #"wl-clip-persist --clipboard both"
 
       # Pyprland
       "pypr &"

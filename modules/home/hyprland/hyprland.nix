@@ -10,13 +10,13 @@ in {
     hyprpicker
     grim
     slurp
-    wl-clip-persist
     wf-recorder
     glib
     wayland
     direnv
     lxqt.lxqt-policykit
     swappy
+    #wl-clip-persist
   ];
 
   imports = [
