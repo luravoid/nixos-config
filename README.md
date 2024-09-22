@@ -33,7 +33,7 @@ First install nixos using any [graphical ISO image](https://nixos.org/download.h
 
 ```bash
 nix-shell -p git
-git clone https://github.com/Frost-Phoenix/nixos-config
+git clone https://github.com/luravoid/nixos-config
 cd nixos-config
 ```
 #### 3. **Install script**
