@@ -1,5 +1,4 @@
-{ pkgs, ... }: 
-let 
+{pkgs, ...}: let
   jonathanharty.gruvbox-material-icon-theme = pkgs.vscode-utils.buildVscodeMarketplaceExtension {
     mktplcRef = {
       name = "gruvbox-material-icon-theme";
@@ -16,35 +15,23 @@ let
   #     hash = "sha256-D+SZEQQwjZeuyENOYBJGn8tqS3cJiWbEkmEqhNRY/i4=";
   #   };
   # };
-in
-{
+in {
   programs.vscode = {
     enable = true;
-    # wczesniejsze ustawienie
     #package = pkgs.vscodium;
     # obecne
     package =
-      (pkgs.vscodium.override
-        {
-          # https://wiki.archlinux.org/title/Wayland#Electron
-          commandLineArgs = [
-            "--ozone-platform-hint=auto"
-            "--ozone-platform=wayland"
-            # make it use GTK_IM_MODULE if it runs with Gtk4, so fcitx5 can work with it.
-            # (only supported by chromium/chrome at this time, not electron)
-            #"--gtk-version=4"
-            # make it use text-input-v1, which works for kwin 5.27 and weston
-            #"--enable-wayland-ime"
-
-            # TODO: fix https://github.com/microsoft/vscode/issues/187436
-            # still not works...
-            #"--password-store=basic" # use gnome-keyring as password store
-          ];
-        });
+      pkgs.vscodium.override
+      {
+        commandLineArgs = [
+          "--ozone-platform-hint=auto"
+          "--ozone-platform=wayland"
+        ];
+      };
     extensions = with pkgs.vscode-extensions; [
       # nix language
       bbenoist.nix
-      # nix-shell suport 
+      # nix-shell suport
       arrterian.nix-env-selector
       # python
       ms-python.python
@@ -52,15 +39,12 @@ in
       ms-vscode.cpptools
       # OCaml
       ocamllabs.ocaml-platform
-
       # Color theme
       jdinhlife.gruvbox
       # sainnhe.gruvbox-material
       jonathanharty.gruvbox-material-icon-theme
-
       # nvim
       asvetliakov.vscode-neovim
-
       # alejandra
       kamadorueda.alejandra
     ];
@@ -68,9 +52,7 @@ in
       "update.mode" = "none";
       "extensions.autoUpdate" = false; # This stuff fixes vscode freaking out when theres an update
       "window.titleBarStyle" = "custom"; # needed otherwise vscode crashes, see https://github.com/NixOS/nixpkgs/issues/246509
-
-      # needed for respecting caps:escape swap
-      "keyboard.dispatch" = "keyCode";
+      "keyboard.dispatch" = "keyCode"; # needed for respecting caps:escape swap
 
       "window.menuBarVisibility" = "toggle";
       "editor.fontFamily" = "'FiraCode Nerd Font', 'SymbolsNerdFont', 'monospace', monospace";
@@ -107,31 +89,6 @@ in
       "workbench.layoutControl.enabled" = false;
 
       "editor.mouseWheelZoom" = true;
-
-      "C_Cpp.autocompleteAddParentheses" = true;
-      "C_Cpp.formatting" = "clangFormat";
-      "C_Cpp.vcFormat.newLine.closeBraceSameLine.emptyFunction" = true;
-      "C_Cpp.vcFormat.newLine.closeBraceSameLine.emptyType" = true;
-      "C_Cpp.vcFormat.space.beforeEmptySquareBrackets" = true;
-      "C_Cpp.vcFormat.newLine.beforeOpenBrace.block" = "sameLine";
-      "C_Cpp.vcFormat.newLine.beforeOpenBrace.function" = "sameLine";
-      "C_Cpp.vcFormat.newLine.beforeElse" = false;
-      "C_Cpp.vcFormat.newLine.beforeCatch" = false;
-      "C_Cpp.vcFormat.newLine.beforeOpenBrace.type" = "sameLine";
-      "C_Cpp.vcFormat.space.betweenEmptyBraces" = true;
-      "C_Cpp.vcFormat.space.betweenEmptyLambdaBrackets" = true;
-      "C_Cpp.vcFormat.indent.caseLabels" = true;
-      "C_Cpp.intelliSenseCacheSize" = 2048;
-      "C_Cpp.intelliSenseMemoryLimit" = 2048;
-      "C_Cpp.default.browse.path" = [
-        ''''${workspaceFolder}/**''
-      ];
-      "C_Cpp.default.cStandard" = "gnu11";
-      "C_Cpp.inlayHints.parameterNames.hideLeadingUnderscores" = false;
-      "C_Cpp.intelliSenseUpdateDelay" = 500;
-      "C_Cpp.workspaceParsingPriority" = "medium";
-      "C_Cpp.clang_format_sortIncludes" = true;
-      "C_Cpp.doxygen.generatedStyle" = "/**";
 
       # needed for nvim
       "extensions.experimental.affinity" = {
