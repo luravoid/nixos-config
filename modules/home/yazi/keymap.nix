@@ -10,11 +10,13 @@
         run = "shell --confirm 'sig -o'";
         desc = "Preview all images in the current directory";
       }
-      { on = ["g" "h"];
+      {
+        on = ["g" "h"];
         run = "cd ~";
         desc = "Go to the home directory";
       }
-      { on = ["g" "n"];
+      {
+        on = ["g" "n"];
         run = "cd ~/nixos-config";
         desc = "Go to the nixos config directory";
       }
