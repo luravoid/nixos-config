@@ -5,7 +5,6 @@
       lspkind.enable = true;
       lightbulb.enable = false;
       lspsaga.enable = true;
-      nvimCodeActionMenu.enable = false;
       trouble.enable = false;
       lspSignature.enable = true;
       lsplines.enable = true;
