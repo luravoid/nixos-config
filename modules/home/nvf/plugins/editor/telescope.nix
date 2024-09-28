@@ -18,7 +18,7 @@
         buffers = "<leader>,";
         #diagnostics = "<leader>sld";
         findFiles = "<leader> ";
-        #findProjects = "<leader>sp";
+        findProjects = "<leader>sp";
         #gitBranches = "<leader>svb";
         #gitBufferCommits = "<leader>svcb";
         #gitCommits = "<leader>svcw";
