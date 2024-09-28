@@ -97,7 +97,7 @@
       # Special workspaces
       "special:scratchpad,gapsin:7,gapsout:64"
       "special:obsidian,gapsin:7,gapsout:64,on-created-empty:obsidianspecial"
-      "special:music,gapsin:7,gapsout:64,on-created-empty:spotify" # autostart-music
+      "special:music,on-created-empty:spotify" # autostart-music
       "special:mail,gapsin:7,gapsout:64,on-created-empty:thunderbird"
       "special:rss,gapsin:7,gapsout:64,on-created-empty:brave --app=https://inoreader.com"
       "special:ai,on-created-empty:autostart-ai"
