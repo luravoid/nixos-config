@@ -21,13 +21,12 @@ in {
 
   imports = [
     ./config/autostart.nix
-    ./config/input.nix
-    ./config/general.nix
-    ./config/decoration.nix
+    ./config/decorations.nix
     ./config/animations.nix
     ./config/keybindings.nix
-    ./config/rules.nix
+    ./config/options.nix
     ./config/plugins.nix
+    ./config/rules.nix
   ];
 
   systemd.user.targets.hyprland-session.Unit.Wants = ["xdg-desktop-autostart.target"];
