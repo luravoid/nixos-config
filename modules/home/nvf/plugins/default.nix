@@ -9,7 +9,7 @@
     # editor
     ./editor/cheatsheet.nix
     ./editor/neo-tree.nix
-    ./editor/projects.nix
+    ./editor/session-manager.nix
     ./editor/telescope.nix
     ./editor/terminal.nix
     ./editor/todo-comments.nix
