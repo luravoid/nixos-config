@@ -48,24 +48,6 @@
               key_hl = "Number";
               action = "Telescope oldfiles";
             }
-            {
-              icon = "🌑 ";
-              icon_hl = "Title";
-              desc = "new vertical file";
-              desc_hl = "String";
-              key = "v";
-              key_hl = "Number";
-              action = "<cmd>vsplit<cr>";
-            }
-            {
-              icon = "🌑 ";
-              icon_hl = "Title";
-              desc = "new horizontal file";
-              desc_hl = "String";
-              key = "h";
-              key_hl = "Number";
-              action = "<cmd>split";
-            }
           ];
         };
       };
