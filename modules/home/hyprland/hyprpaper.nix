@@ -1,14 +1,18 @@
-{ config, lib, pkgs, ... }:
 {
-  home.packages = (with pkgs; [ hyprpaper ]);
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  home.packages = with pkgs; [hyprpaper];
   services.hyprpaper = {
     enable = true;
     settings = {
       preload = [
-        "~/Pictures/Backgrounds/wall1.jpg"
+        "${../../../wallpapers/nixos/nixos_blue.png}"
       ];
       wallpaper = [
-        ",~/Pictures/Backgrounds/wall1.jpg"
+        ",${../../../wallpapers/nixos/nixos_blue.png}"
       ];
     };
   };

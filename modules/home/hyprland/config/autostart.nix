@@ -43,6 +43,8 @@
       "windowstate &"
       "toggleurgent &"
       "groupbind-run &"
+      "selectwallpaper --last &"
+      #"wallshift &"
     ];
   };
 }
