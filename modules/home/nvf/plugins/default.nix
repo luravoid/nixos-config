@@ -14,7 +14,7 @@
     ./editor/terminal.nix
     ./editor/todo-comments.nix
     ./editor/which-key.nix
-    ./editor/yazi.nix
+    #./editor/yazi.nix
 
     # lang
     ./lang/languages.nix
@@ -33,6 +33,6 @@
     ./ui/theme.nix
 
     # util
-    ./util/image.nix
+    #./util/image.nix
   ];
 }

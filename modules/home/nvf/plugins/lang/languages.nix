@@ -11,8 +11,8 @@
       nix.enable = true;
       python.enable = true;
       rust = {
-        enable = true;
-        crates.enable = true;
+        enable = false;
+        crates.enable = false;
       };
       markdown.enable = true;
     };

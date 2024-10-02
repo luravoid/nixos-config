@@ -4,12 +4,11 @@
       formatOnSave = true;
       lspkind.enable = true;
       lightbulb.enable = false;
-      lspsaga.enable = true;
+      lspsaga.enable = false;
       trouble.enable = false;
-      lspSignature.enable = true;
+      lspSignature.enable = false;
       lsplines.enable = true;
       lspconfig.enable = true;
-      nvim-docs-view.enable = false; # neovim lagging when true
     };
   };
 }
