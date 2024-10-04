@@ -37,8 +37,10 @@ in {
       # hidpi = true;
     };
     # enableNvidiaPatches = false;
-    systemd.enable = true;
-    systemd.variables = ["--all"];
+    systemd = {
+      enable = true;
+      variables = ["--all"];
+    };
 
     plugins = with pkgs; [hypreasymotion];
 
