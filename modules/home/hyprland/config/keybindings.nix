@@ -13,8 +13,8 @@
       "$mainMod SHIFT, P, exec, betterpin"
       "$mainMod ALT, P, exec, changelayout"
       "$mainMod SHIFT, I, exec, wininfo"
-      "$mainMod ALT, C, exec, python3 floatinggrid.py horizontal"
-      "$mainMod ALT, X, exec, python3 floatinggrid.py vertical"
+      "$mainMod ALT, C, exec, floatinggrid horizontal"
+      "$mainMod ALT, X, exec, floatinggrid vertical"
       "$mainMod, semicolon, exec, colorpicker"
       "$mainMod ALT, semicolon, exec, hyprctl seterror disable"
 

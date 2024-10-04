@@ -5,7 +5,7 @@
   colorpicker = pkgs.writeShellScriptBin "colorpicker" (builtins.readFile ./scripts-hyprland/colorpicker);
   dynamicwindow = pkgs.writeShellScriptBin "dynamicwindow" (builtins.readFile ./scripts-hyprland/dynamicwindow);
   easymotion = pkgs.writeShellScriptBin "easymotion" (builtins.readFile ./scripts-hyprland/easymotion);
-  #floatinggrid = pkgs.writeShellScriptBin "floatinggrid" (builtins.readFile ./scripts-hyprland/floatinggrid.py);
+  floatinggrid = pkgs.writers.writePython3Bin "floatinggrid" {} (builtins.readFile ./scripts-hyprland/floatinggrid.py);
   focuswindow = pkgs.writeShellScriptBin "focuswindow" (builtins.readFile ./scripts-hyprland/focuswindow);
   groupbind-run = pkgs.writeShellScriptBin "groupbind-run" (builtins.readFile ./scripts-hyprland/groupbind-run);
   hycov-easymotion = pkgs.writeShellScriptBin "hycov-easymotion" (builtins.readFile ./scripts-hyprland/hycov-easymotion);
@@ -36,7 +36,6 @@
   autostart-ai = pkgs.writeShellScriptBin "autostart-ai" (builtins.readFile ./scripts-hyprland/autostart/autostart-ai);
   autostart-dict = pkgs.writeShellScriptBin "autostart-dict" (builtins.readFile ./scripts-hyprland/autostart/autostart-dict);
   autostart-music = pkgs.writeShellScriptBin "autostart-music" (builtins.readFile ./scripts-hyprland/autostart/autostart-music);
-
 in {
   home.packages = with pkgs; [
     betterpin
@@ -45,7 +44,7 @@ in {
     colorpicker
     dynamicwindow
     easymotion
-    #floatinggrid
+    floatinggrid
     focuswindow
     groupbind-run
     hycov-easymotion
