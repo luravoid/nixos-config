@@ -15,7 +15,7 @@
       };
 
       mappings = {
-        buffers = "<leader>,";
+        buffers = "<leader>.";
         #diagnostics = "<leader>sld";
         findFiles = "<leader> ";
         findProjects = "<leader>sp";

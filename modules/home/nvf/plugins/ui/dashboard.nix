@@ -22,27 +22,27 @@
           ];
           center = [
             {
-              icon = "🌑 ";
+              icon = "  ";
               icon_hl = "Title";
-              desc = "sessions";
+              desc = "sessions              ";
               desc_hl = "String";
               key = "s";
               key_hl = "Number";
               action = "SessionManager load_session";
             }
             {
-              icon = "🌑 ";
+              icon = "  ";
               icon_hl = "Title";
-              desc = "find files";
+              desc = "find files            ";
               desc_hl = "String";
               key = "f";
               key_hl = "Number";
               action = "Telescope find_files";
             }
             {
-              icon = "🌑 ";
+              icon = "  ";
               icon_hl = "Title";
-              desc = "recent files";
+              desc = "recent files          ";
               desc_hl = "String";
               key = "r";
               key_hl = "Number";
