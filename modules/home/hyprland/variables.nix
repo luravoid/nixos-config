@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   home.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     __GL_GSYNC_ALLOWED = "0";
@@ -23,6 +22,6 @@
     XDG_SESSION_TYPE = "wayland";
     SDL_VIDEODRIVER = "wayland";
     CLUTTER_BACKEND = "wayland";
-    GTK_THEME = "Gruvbox-Dark";
+    GTK_THEME = "Gruvbox-Material-Dark";
   };
 }
