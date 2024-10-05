@@ -3,7 +3,7 @@ import requests
 import json
 from datetime import datetime
 
-TODOIST_API_TOKEN = "9b4469e3e4930fbc6ffea114f568f4c444e721ef"
+TODOIST_API_TOKEN = ""
 
 PRIORITY_COLORS = {
     4: "#D1453B",  # P4

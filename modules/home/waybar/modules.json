@@ -127,6 +127,25 @@
             "Easy Effects Sink"
         ]
     },
+    "mpris": {
+        "format": "{player_icon} {artist} - {title}",
+        "format-paused": "{player_icon} {artist} - {title}",
+        "on-click": "playerctl -p spotify play-pause",
+        "on-click-right": "playerctl -p spotify next",
+        "on-click-middle": "hyprctl dispatch togglespecialworkspace music",
+        "player": "spotify",
+        "player-icons": {
+            "chromium": "",
+            "default": "",
+            "firefox": "",
+            "kdeconnect": "",
+            "mopidy": "",
+            "mpv": "󰐹",
+            "spotify": "<span foreground='#98971a'></span>",
+            "vlc": "󰕼",
+        },
+        "max-length": 45
+    },
     "hyprland/window": {
         "format": " {title}",
         "separate-outputs": true

@@ -1,5 +1,4 @@
-{ host, ... }:
-{
+{host, ...}: {
   programs.waybar.settings = {
     mainBar = {
       position = "top";
@@ -16,9 +15,10 @@
         "custom/windowstate_0"
       ];
       modules-right = [
-        "custom/spotify"
+        #"custom/spotify"
+        "mpris"
         "custom/colorpicker"
-        "custom/todoist"
+        #"custom/todoist"
         "cpu"
         "memory"
         "temperature"
@@ -47,9 +47,10 @@
         "custom/windowstate_1"
       ];
       modules-right = [
-        "custom/spotify"
+        #"custom/spotify"
+        "mpris"
         "custom/colorpicker"
-        "custom/todoist"
+        #"custom/todoist"
         "cpu"
         "memory"
         "temperature"
@@ -63,4 +64,3 @@
     };
   };
 }
-

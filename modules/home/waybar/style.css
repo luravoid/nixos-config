@@ -179,6 +179,12 @@ label:focus {
     color: #ebdbb2;
 }
 
+#mpris {
+    background-color: transparent;
+    color: #ebdbb2;
+    padding: 0 6px;
+}
+
 #temperature {
     color: #ebdbb2;
     padding: 0 6px;
