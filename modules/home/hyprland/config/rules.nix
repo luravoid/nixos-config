@@ -33,7 +33,6 @@
       "tile,title:(chat.openai)"
       "tile,title:(gemini)"
       "tile,title:(copilot.microsoft.com)"
-      "tile,class:(Microsoft-edge),title:(copilot.microsoft.com)"
       "tile,title:(todoist)"
       "tile,title:(monkeytype)"
       "tile,class:(scrcpy)"
