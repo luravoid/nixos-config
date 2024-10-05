@@ -1,15 +1,19 @@
-{ pkgs, username, ... }: 
 {
+  pkgs,
+  username,
+  ...
+}: {
   services = {
     xserver = {
       enable = true;
       xkb.layout = "pl,us";
+      displayManager.startx.enable = true;
     };
 
-    displayManager.autoLogin = {
-      enable = true;
-      user = "${username}";
-    };
+    #displayManager.autoLogin = {
+    #  enable = true;
+    #  user = "${username}";
+    #};
     libinput = {
       enable = true;
       # mouse = {
