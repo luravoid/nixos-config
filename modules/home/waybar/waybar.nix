@@ -1,11 +1,74 @@
-{ pkgs, ... }: 
-{
+{pkgs, ...}: {
   programs.waybar = {
     enable = true;
+    package = pkgs.waybar.overrideAttrs (oa: {
+      mesonFlags = (oa.mesonFlags or []) ++ ["-Dexperimental=true"];
+    });
+    settings = {
+      mainBar = {
+        position = "top";
+        layer = "top";
+        height = 23;
+        output = ["HDMI-A-1"];
+        modules-left = [
+          "hyprland/workspaces"
+          "hyprland/mode"
+          "hyprland/scratchpad"
+          "hyprland/window"
+        ];
+        modules-center = [
+          "custom/windowstate_0"
+        ];
+        modules-right = [
+          #"custom/spotify"
+          "mpris"
+          "custom/colorpicker"
+          #"custom/todoist"
+          "cpu"
+          "memory"
+          "temperature"
+          "pulseaudio"
+          "custom/notification"
+          "clock"
+          "tray"
+        ];
+        include = [
+          "~/.config/waybar/modules.json"
+        ];
+      };
+
+      topBar = {
+        position = "top";
+        layer = "top";
+        height = 23;
+        output = ["DVI-D-1"];
+        modules-left = [
+          "hyprland/workspaces"
+          "hyprland/mode"
+          "hyprland/scratchpad"
+          "hyprland/window"
+        ];
+        modules-center = [
+          "custom/windowstate_1"
+        ];
+        modules-right = [
+          #"custom/spotify"
+          "mpris"
+          "custom/colorpicker"
+          #"custom/todoist"
+          "cpu"
+          "memory"
+          "temperature"
+          "pulseaudio"
+          "clock"
+          "tray"
+        ];
+        include = [
+          "~/.config/waybar/modules.json"
+        ];
+      };
+    };
   };
-  programs.waybar.package = pkgs.waybar.overrideAttrs (oa: {
-    mesonFlags = (oa.mesonFlags or [ ]) ++ [ "-Dexperimental=true" ];
-  });
 
   xdg.configFile."waybar/scripts" = {
     source = ./scripts;

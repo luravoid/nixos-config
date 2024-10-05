@@ -30,7 +30,7 @@
     ./yazi                            # file manager
     
     ./vscodium.nix                    # vscode forck
-    ./waybar                          # status bar
+    ./waybar/waybar.nix               # status bar
     ./xdg-mimes.nix                   # xdg config
     ./zsh.nix                         # shell
 
