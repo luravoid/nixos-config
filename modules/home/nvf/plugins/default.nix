@@ -25,7 +25,7 @@
     #./ui/bufferline.nix
     ./ui/dashboard.nix
     ./ui/icons.nix
-    ./ui/illuminate.nix
+    #./ui/illuminate.nix
     ./ui/indent-blankline.nix
     ./ui/lualine.nix
     ./ui/noice.nix

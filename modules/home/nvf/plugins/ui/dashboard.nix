@@ -23,7 +23,7 @@
           center = [
             {
               icon = "  ";
-              icon_hl = "Title";
+              icon_hl = "Number";
               desc = "sessions              ";
               desc_hl = "String";
               key = "s";
@@ -32,7 +32,7 @@
             }
             {
               icon = "  ";
-              icon_hl = "Title";
+              icon_hl = "Number";
               desc = "find files            ";
               desc_hl = "String";
               key = "f";
@@ -41,7 +41,7 @@
             }
             {
               icon = "  ";
-              icon_hl = "Title";
+              icon_hl = "Number";
               desc = "recent files          ";
               desc_hl = "String";
               key = "r";
@@ -49,6 +49,7 @@
               action = "Telescope oldfiles";
             }
           ];
+          footer = {};
         };
       };
     };
