@@ -21,29 +21,30 @@ bind_keys_layout() {
     hyprctl keyword bind SUPER SHIFT,K,layoutmsg,swapprev
 }
 
-# Zmienna przechowująca ostatnio wywołane komendy
+get_data() {
+    monitors=$(hyprctl -j monitors)
+    clients=$(hyprctl -j clients)
+
+    active_monitor=$(echo "$monitors" | jq '.[] | select(.focused==true)')
+
+    if [ -n "$(echo "$active_monitor" | jq -r '.specialWorkspace.name')" ]; then
+        active_workspace=$(echo "$active_monitor" | jq -r '.specialWorkspace.name')
+    else
+        active_workspace=$(echo "$active_monitor" | jq -r '.activeWorkspace.name')
+    fi
+
+    windows_in_active_workspace=$(echo "$clients" | jq -c ".[] | select(.workspace.name==\"$active_workspace\")")
+    grouped_windows_in_active_workspace=$(echo "$windows_in_active_workspace" | jq -c 'select(.grouped | length > 0)')
+}
+
 last_commands=""
 
 handle() {
   case $1 in
     activewindow*)
-        monitors=$(hyprctl -j monitors)
-        clients=$(hyprctl -j clients)
+        get_data
 
-        active_monitor=$(echo "$monitors" | jq '.[] | select(.focused==true)')
-
-        # Sprawdzanie, czy istnieje specialWorkspace
-        if [ -n "$(echo "$active_monitor" | jq -r '.specialWorkspace.name')" ]; then
-            active_workspace=$(echo "$active_monitor" | jq -r '.specialWorkspace.name')
-        else
-            active_workspace=$(echo "$active_monitor" | jq -r '.activeWorkspace.name')
-        fi
-
-        # Sprawdzanie, czy okna w aktywnym workspace mają 'grouped'
-        windows_in_active_workspace=$(echo "$clients" | jq -c ".[] | select(.workspace.name==\"$active_workspace\")")
-        grouped_windows_in_active_workspace=$(echo "$windows_in_active_workspace" | jq -c 'select(.grouped | length > 0)')
-
-        # Sprawdzanie, czy okna w grupie są jedynymi na aktywnym workspacie
+        # Check whether the windows in a group are the only ones in the active workspace
         if [ "$(echo "$grouped_windows_in_active_workspace" | jq -s '. | length')" -gt 0 ] && [ "$(echo "$windows_in_active_workspace" | jq -s '. | length')" == "$(echo "$grouped_windows_in_active_workspace" | jq -s '. | length')" ]; then
             new_commands="group"
             if [ "$last_commands" != "$new_commands" ]; then
@@ -61,19 +62,7 @@ handle() {
         fi
     ;;
     configreloaded*)
-        monitors=$(hyprctl -j monitors)
-        clients=$(hyprctl -j clients)
-
-        active_monitor=$(echo "$monitors" | jq '.[] | select(.focused==true)')
-
-        if [ -n "$(echo "$active_monitor" | jq -r '.specialWorkspace.name')" ]; then
-            active_workspace=$(echo "$active_monitor" | jq -r '.specialWorkspace.name')
-        else
-            active_workspace=$(echo "$active_monitor" | jq -r '.activeWorkspace.name')
-        fi
-
-        windows_in_active_workspace=$(echo "$clients" | jq -c ".[] | select(.workspace.name==\"$active_workspace\")")
-        grouped_windows_in_active_workspace=$(echo "$windows_in_active_workspace" | jq -c 'select(.grouped | length > 0)')
+        get_data
 
         if [ "$(echo "$grouped_windows_in_active_workspace" | jq -s '. | length')" -gt 0 ] && [ "$(echo "$windows_in_active_workspace" | jq -s '. | length')" == "$(echo "$grouped_windows_in_active_workspace" | jq -s '. | length')" ]; then
             unbind_keys
