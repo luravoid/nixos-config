@@ -67,9 +67,6 @@ handle() {
         if [ "$(echo "$grouped_windows_in_active_workspace" | jq -s '. | length')" -gt 0 ] && [ "$(echo "$windows_in_active_workspace" | jq -s '. | length')" == "$(echo "$grouped_windows_in_active_workspace" | jq -s '. | length')" ]; then
             unbind_keys
             bind_keys_group
-        else
-            unbind_keys
-            bind_keys_layout
         fi
     ;;
   esac
