@@ -81,7 +81,7 @@ in {
       "breadcrumbs.enabled" = false;
       "editor.renderControlCharacters" = false;
       #"workbench.activityBar.location" = "hidden";
-      "workbench.statusBar.visible" = false;
+      "workbench.statusBar.visible" = true;
       "editor.scrollbar.verticalScrollbarSize" = 5;
       "editor.scrollbar.horizontalScrollbarSize" = 5;
       #"editor.scrollbar.vertical" = "hidden";
