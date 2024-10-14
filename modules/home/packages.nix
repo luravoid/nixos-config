@@ -82,6 +82,7 @@ in
     font-manager
     anki-bin
     stremio
+    qbittorrent
 
     # C / C++
     gcc
