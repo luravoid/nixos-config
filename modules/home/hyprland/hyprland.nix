@@ -2,9 +2,7 @@
   inputs,
   pkgs,
   ...
-}: let
-  hypreasymotion = pkgs.callPackage ../../../pkgs/hyprland-easymotion/default.nix {};
-in {
+}: {
   home.packages = with pkgs; [
     inputs.hypr-contrib.packages.${pkgs.system}.grimblast
     hyprpicker
@@ -32,22 +30,9 @@ in {
   systemd.user.targets.hyprland-session.Unit.Wants = ["xdg-desktop-autostart.target"];
   wayland.windowManager.hyprland = {
     enable = true;
-    xwayland = {
-      enable = true;
-      # hidpi = true;
-    };
-    # enableNvidiaPatches = false;
     systemd = {
       enable = true;
       variables = ["--all"];
     };
-
-    plugins = with pkgs; [hypreasymotion];
-
-    extraConfig = "
-      xwayland {
-        force_zero_scaling = true
-      }
-    ";
   };
 }

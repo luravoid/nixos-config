@@ -1,6 +1,9 @@
-{
-  wayland.windowManager.hyprland.settings = {
-    plugin = {
+{pkgs, ...}: let
+  hypreasymotion = pkgs.callPackage ../../../../pkgs/hyprland-easymotion/default.nix {};
+in {
+  wayland.windowManager.hyprland = {
+    plugins = with pkgs; [hypreasymotion];
+    settings.plugin = {
       easymotion = {
         textsize = 30;
         textcolor = "rgb(ebdbb2)";
