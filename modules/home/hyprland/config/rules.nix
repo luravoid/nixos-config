@@ -7,6 +7,7 @@
       "size 75% 80%,class:(Xdg-desktop-portal-gtk),title:(Open Files)"
       "size 75% 80%,class:(Xdg-desktop-portal-gtk),title:(All Files)"
       "size 50% 55%,class:(pulsemixer)"
+      "size 90% 80%,class:(floatingterm)"
 
       # Float
       "float,class:^(net.davidotek.pupgui2)$"
@@ -23,6 +24,7 @@
       "float,class:(Xdg-desktop-portal-gtk),title:(Open Files)"
       "float,class:(Xdg-desktop-portal-gtk),title:(All Files)"
       "float,class:(pulsemixer)"
+      "float,class:(floatingterm)"
 
       # Fullscreen
       "fullscreen,class:(mpv)"
