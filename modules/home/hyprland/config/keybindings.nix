@@ -36,7 +36,7 @@
       "$mainMod CTRL, C, exec, pkill tofi || cliphist list | tofi | cliphist decode | wl-copy"
       "$mainMod CTRL, W, exec, pkill tofi || focuswindow tofi"
       "$mainMod CTRL, E, exec, pkill tofi || togglespecial-menu"
-      "$mainMod CTRL, Z, exec, pkill tofi || selectwallpaper"
+      "$mainMod CTRL, Z, exec, pkill rofi || selectwallpaper"
 
       #== Screenshot/Screencapture ======================================================================
       "$mainMod CTRL, S, exec, screenshot-wl sf"
@@ -106,10 +106,11 @@
       "$mainMod SHIFT, E, exec, togglewindow -b"
       "$mainMod, E, exec, pkill tofi || togglewindow -r 'tofi --height 400 --prompt-text=Window: '"
 
-      "$mainMod SHIFT, U, exec, toggleurgent -t"
+      #== Urgent windows ================================================================================
       "$mainMod, U, focusurgentorlast"
+      "$mainMod SHIFT, U, exec, toggleurgent -t"
 
-      #== Monitor =======================================================================================
+      #== Monitors =======================================================================================
       "$mainMod, comma, focusmonitor, +1"
       "$mainMod, period, focusmonitor, -1"
       "$mainMod SHIFT, comma, movewindow,mon:+1"
@@ -167,6 +168,7 @@
     ];
 
     bindl = [
+      #== Brightness ====================================================================================
       ",XF86MonBrightnessUp, exec, brightnessctl set 5%+"
       ",XF86MonBrightnessDown, exec, brightnessctl set 5%-"
       "$mainMod, XF86MonBrightnessUp, exec, brightnessctl set 100%+"
@@ -174,9 +176,11 @@
     ];
 
     binde = [
+      #== Volume ========================================================================================
       ",XF86AudioMute,exec, changevolume mute"
       ",XF86AudioRaiseVolume,exec, changevolume up"
       ",XF86AudioLowerVolume,exec, changevolume down"
+
       #== Master Layout =================================================================================
       "$mainMod SHIFT, H, resizeactive, 0 80"
       "$mainMod, H, resizeactive, -100 0"
