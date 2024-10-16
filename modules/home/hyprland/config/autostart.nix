@@ -33,9 +33,6 @@
       # Sprawn programs
       "[workspace 5 silent] obsidian"
 
-      # Lock
-      "hyprlock"
-
       # Polkit
       "lxqt-policykit-agent"
 
