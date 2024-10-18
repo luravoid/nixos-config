@@ -97,6 +97,11 @@
       # python
       piv = "python -m venv .venv";
       psv = "source .venv/bin/activate";
+
+      # Hyprland
+      hl = "Hyprland";
+      clients = "hyprctl -j clients | jless";
+      monitors = "hyprctl -j monitors | jless";
     };
   };
 
