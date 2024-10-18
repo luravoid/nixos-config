@@ -26,6 +26,7 @@
     ./scripts                         # personal scripts
     ./spicetify.nix                   # spotify client
     ./starship.nix                    # shell prompt
+    ./swayimg.nix                     # image viewer 
     ./tofi.nix                        # launcher
     ./yazi                            # file manager
     

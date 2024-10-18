@@ -3,23 +3,21 @@
   lib,
   config,
   ...
-}: {
-  home.packages = with pkgs; [swayimg];
+}: let
   settings = {
     font = {
-      # Uncomment and set these when needed
-      # name = "FontName";
-      # size = fonts.sizes.applications;
-      # color = colors.base05;
-      # shadow = colors.base01;
+      name = "Terminess Nerd Font";
+      # size = ;
+      # color = ;
+      # shadow = ;
     };
 
     viewer = {
-      # Uncomment and set these when performance improves or desired
-      # antialiasing = true;
-      # fixed = false;
-      # transparency = true; # Example value
-      # window = "fullscreen"; # Example value
+      window = "#282828E6";
+    };
+
+    gallery = {
+      window = "#282828E6";
     };
 
     "info.viewer".top_left = "name, imagesize, filesize";
@@ -27,13 +25,13 @@
     "keys.viewer" = {
       "0" = "first_file";
       "dollar" = "last_file";
-      "Ctrl+h" = "prev_file";
-      "Ctrl+l" = "next_file";
+      k = "prev_file";
+      j = "next_file";
       f = "fullscreen";
-      h = "step_left";
-      j = "step_down";
-      k = "step_up";
-      l = "step_right";
+      "Ctrl+h" = "step_left";
+      "Ctrl+j" = "step_down";
+      "Ctrl+k" = "step_up";
+      "Ctrl+l" = "step_right";
       r = "rotate_right";
       "Shift+r" = "rotate_left";
       "Ctrl+r" = "reload";
@@ -42,7 +40,6 @@
       "underscore" = "zoom +10"; # Same as "plus" for redundancy
       n = "zoom optimal";
 
-      # Uncomment these lines if trash or delete functionality is needed
       # d = "exec gtrash put '%'; status 'Trashed %'";
       # "Shift+d" = "exec rm '%'; status 'Deleted %'";
       # Delete = "exec rm '%'; status 'Deleted %'";
@@ -52,8 +49,20 @@
 
       ScrollUp = "zoom +5";
       ScrollDown = "zoom -5";
+
+      Space = "mode";
+    };
+
+    "keys.gallery" = {
+      h = "step_left";
+      l = "step_right";
+      k = "step_up";
+      j = "step_down";
+
+      Space = "mode";
     };
   };
-
+in {
+  home.packages = with pkgs; [swayimg];
   xdg.configFile."swayimg/config".text = lib.generators.toINI {} settings;
 }
