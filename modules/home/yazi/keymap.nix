@@ -8,7 +8,12 @@
       {
         on = ["<C-s>"];
         run = "shell --confirm 'sig -o'";
-        desc = "Preview all images in the current directory";
+        desc = "Preview all images in the current directory with rofi";
+      }
+      {
+        on = ["I"];
+        run = "shell --confirm 'swayimg --gallery'";
+        desc = "Preview all images in the current directory with swayimg";
       }
       {
         on = ["g" "h"];
