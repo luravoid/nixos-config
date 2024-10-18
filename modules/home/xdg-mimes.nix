@@ -4,7 +4,7 @@ let
   defaultApps = {
     browser = [ "brave.desktop" ];
     text = [ "codium.desktop" ];
-    image = [ "com.interversehq.qView.desktop" ];
+    image = [ "swayimg.desktop" ];
     audio = [ "mpv.desktop" ];
     video = [ "mpv.desktop" ];
     directory = [
