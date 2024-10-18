@@ -8,6 +8,7 @@
       "size 75% 80%,class:(Xdg-desktop-portal-gtk),title:(All Files)"
       "size 50% 55%,class:(pulsemixer)"
       "size 90% 80%,class:(floatingterm)"
+      "size 90% 80%,class:(swayimg)"
 
       # Float
       "float,class:^(net.davidotek.pupgui2)$"
@@ -25,6 +26,7 @@
       "float,class:(Xdg-desktop-portal-gtk),title:(All Files)"
       "float,class:(pulsemixer)"
       "float,class:(floatingterm)"
+      "float,class:(swayimg)"
 
       # Fullscreen
       "fullscreen,class:(mpv)"
