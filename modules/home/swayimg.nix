@@ -8,7 +8,7 @@
     font = {
       name = "Terminess Nerd Font";
       # size = ;
-      # color = ;
+      color = "#ebdbb2";
       # shadow = ;
     };
 
