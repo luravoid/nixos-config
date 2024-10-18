@@ -37,7 +37,7 @@
       "Ctrl+r" = "reload";
       i = "info";
       "plus" = "zoom +10";
-      "underscore" = "zoom +10"; # Same as "plus" for redundancy
+      "underscore" = "zoom +10";
       n = "zoom optimal";
 
       # d = "exec gtrash put '%'; status 'Trashed %'";
