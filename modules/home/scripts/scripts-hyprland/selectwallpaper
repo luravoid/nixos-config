@@ -2,36 +2,68 @@
 
 last_wallpapers_file="$HOME/.config/hypr/lastwallpapers.txt"
 
-# Load last wallpapers from the file
+# Select a wallpaper using rofi
+select_wallpaper() {
+    wallpapers=$(find "$HOME/Pictures/Backgrounds" -type f)
+    
+    selected_wallpaper=$(for a in $wallpapers; do
+        echo -en "${a##*/}\0icon\x1f$a\n"
+    done | rofi -dmenu -i -p "WALLPAPER" -theme ~/.config/rofi/themes/wallpaper.rasi)
+
+    echo "$selected_wallpaper"
+}
+
+# Select a monitor using rofi
+select_monitor() {
+    monitors=$(hyprctl -j monitors | jq -r '.[].name')
+    monitor_count=$(echo "$monitors" | wc -l)
+
+    selected_monitor=$(for monitor in $monitors; do
+        echo -en "$monitor\n"
+    done | rofi -dmenu -p "MONITOR" -theme ~/.config/rofi/themes/wallpaper.rasi -no-show-icons -theme-str "window { width: 350px; } listview { lines: $monitor_count; columns: 1;}")
+
+    echo "$selected_monitor"
+}
+
+# Set the wallpaper on a specified monitor
+set_wallpaper() {
+    local monitor=$1
+    local wallpaper_path=$2
+
+    # Check if there is an active wallpaper on the monitor and unload it
+    current_wallpaper_path=$(hyprctl hyprpaper listactive | grep "$monitor" | awk -F ' = ' '{print $2}')
+    if [[ -n $current_wallpaper_path ]]; then
+        hyprctl hyprpaper unload "$current_wallpaper_path"
+    fi
+
+    # Preload and set the new wallpaper
+    hyprctl hyprpaper preload "$wallpaper_path"
+    hyprctl hyprpaper wallpaper "$monitor,$wallpaper_path"
+
+    # Save the active wallpapers to a file
+    hyprctl hyprpaper listactive > "$last_wallpapers_file"
+}
+
+# Load last saved wallpapers from the file
 load_last_wallpapers() {
     if [[ -f "$last_wallpapers_file" ]]; then
-        # Get available monitors
         available_monitors=$(hyprctl -j monitors | jq -r '.[].name')
 
-        # Wait for hyprpaper to be loaded
-        sleep 0.1
+        sleep 0.1  # Wait for hyprpaper to load
 
-        # Load wallpapers from the file
         while IFS=' = ' read -r monitor wallpaper_path; do
             if [[ -n $monitor && -n $wallpaper_path && -f "$wallpaper_path" ]]; then
-                # Check if the monitor exists
                 if echo "$available_monitors" | grep -q "$monitor"; then
-                    # Preload and set the wallpaper if the monitor exists
-                    hyprctl hyprpaper preload "$wallpaper_path"
-                    hyprctl hyprpaper wallpaper "$monitor,$wallpaper_path"
+                    set_wallpaper "$monitor" "$wallpaper_path"
                 else
                     echo "Monitor $monitor is not connected."
                 fi
             fi
         done < "$last_wallpapers_file"
 
-        # Get the list of active wallpapers
         active_paths=$(hyprctl hyprpaper listactive | awk -F ' = ' '{print $2}')
-
-        # Get the list of loaded wallpapers
         loaded_paths=$(hyprctl hyprpaper listloaded | awk -F ' = ' '{print $2}')
 
-        # Unload wallpapers that are loaded but not active
         for loaded in $loaded_paths; do
             if ! echo "$active_paths" | grep -q "$loaded"; then
                 hyprctl hyprpaper unload "$loaded"
@@ -42,49 +74,30 @@ load_last_wallpapers() {
     fi
 }
 
-# Check if the --last argument is provided
-if [[ $1 == "--last" ]]; then
+# Argument handling
+case "$1" in
+  --last)
     load_last_wallpapers
-    exit 0
-fi
-
-# Find all wallpapers
-wallpapers=$(find "$HOME/Pictures/Backgrounds" -type f)
-
-# Show menu (with icon) for wallpaper selection
-selected_wallpaper=$(for a in $wallpapers; do
-    echo -en "${a##*/}\0icon\x1f$a\n"
-done | rofi -dmenu -i -p "WALLPAPER" -theme ~/.config/rofi/themes/wallpaper.rasi)
-
-# if a wallpaper is selected
-if [[ -n $selected_wallpaper ]]; then
-    # get monitor names
-    monitors=$(hyprctl -j monitors | jq -r '.[].name')
-
-    # count the number of monitors
-    monitor_count=$(echo "$monitors" | wc -l)
-    
-    # show menu for monitor selection with dynamic lines
-    selected_monitor=$(for monitor in $monitors; do
-        echo -en "$monitor\n"
-    done | rofi -dmenu -p "MONITOR" -theme ~/.config/rofi/themes/wallpaper.rasi -no-show-icons -theme-str "window { width: 350px; } listview { lines: $monitor_count; columns: 1;}")
-    
-    # if a monitor is selected
-    if [[ -n $selected_monitor ]]; then
-        # get the current wallpaper path
-        current_wallpaper_path=$(hyprctl hyprpaper listactive | grep "$selected_monitor" | awk -F ' = ' '{print $2}')
-        current_wallpaper_name=$(basename "$current_wallpaper_path")
-
-        # unload the current wallpaper (if exists)
-        if [[ -n $current_wallpaper_path ]]; then
-            hyprctl hyprpaper unload "$current_wallpaper_path"
+    ;;
+  
+  --path)
+    if [[ -n $2 && -f $2 ]]; then
+        selected_monitor=$(select_monitor)
+        if [[ -n $selected_monitor ]]; then
+            set_wallpaper "$selected_monitor" "$2"
         fi
-
-        # preload and set the new wallpaper
-        hyprctl hyprpaper preload "$HOME/Pictures/Backgrounds/$selected_wallpaper"
-        hyprctl hyprpaper wallpaper "$selected_monitor,$HOME/Pictures/Backgrounds/$selected_wallpaper"
-
-        # Save the active wallpapers to a file
-        hyprctl hyprpaper listactive > "$last_wallpapers_file"
+    else
+        echo "Invalid or missing wallpaper path."
     fi
-fi
+    ;;
+
+  *)
+    selected_wallpaper=$(select_wallpaper)
+    if [[ -n $selected_wallpaper ]]; then
+        selected_monitor=$(select_monitor)
+        if [[ -n $selected_monitor ]]; then
+            set_wallpaper "$selected_monitor" "$HOME/Pictures/Backgrounds/$selected_wallpaper"
+        fi
+    fi
+    ;;
+esac
