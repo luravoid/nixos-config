@@ -109,6 +109,7 @@
       "special:type,gapsin:7,gapsout:64,on-created-empty:brave --app=https://monkeytype.com"
       "special:sound,on-created-empty:kitty --title pulsemixer --class pulsemixer -e pulsemixer"
 
+      # Maximize without no gaps
       "s[false] f[1],gapsin:0,gapsout:0"
     ];
 
