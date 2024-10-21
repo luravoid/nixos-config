@@ -83,6 +83,13 @@
             for = "unix";
           }
         ];
+        set_wallpaper = [
+          {
+            run = "selectwallpaper --path \"$1\"";
+            desc = "Set as wallpaper";
+            for = "linux";
+          }
+        ];
       };
 
       open = {
@@ -97,7 +104,7 @@
           }
           {
             mime = "image/*";
-            use = ["open" "reveal"];
+            use = ["open" "set_wallpaper" "reveal"];
           }
           {
             mime = "{audio,video}/*";

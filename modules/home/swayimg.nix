@@ -51,6 +51,7 @@
       ScrollDown = "zoom -5";
 
       Space = "mode";
+      "Ctrl+Space" = "exec selectwallpaper --path %";
     };
 
     "keys.gallery" = {
@@ -60,6 +61,7 @@
       j = "step_down";
 
       Space = "mode";
+      "Ctrl+Space" = "exec selectwallpaper --path %";
     };
   };
 in {

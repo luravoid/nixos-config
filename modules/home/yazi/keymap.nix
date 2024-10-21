@@ -12,7 +12,7 @@
       }
       {
         on = ["I"];
-        run = "shell --confirm 'swayimg --gallery'";
+        run = "shell --confirm 'swayimg --gallery '$(pwd)''";
         desc = "Preview all images in the current directory with swayimg";
       }
       {
