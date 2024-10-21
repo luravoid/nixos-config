@@ -49,6 +49,7 @@
       "group set,class:(translate)"
 
       # Workspaces
+      "workspace 2, class:(brave-browser)"
       "workspace 2, class:(Brave-browser)"
       "workspace 3, class:(VSCodium)"
       "workspace 3, title:(VSCodium)"
