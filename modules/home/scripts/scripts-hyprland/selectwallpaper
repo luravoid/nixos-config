@@ -51,19 +51,26 @@ load_last_wallpapers() {
 
         sleep 0.1  # Wait for hyprpaper to load
 
+        # Load wallpapers from the file
         while IFS=' = ' read -r monitor wallpaper_path; do
             if [[ -n $monitor && -n $wallpaper_path && -f "$wallpaper_path" ]]; then
+                # Check if the monitor exists
                 if echo "$available_monitors" | grep -q "$monitor"; then
-                    set_wallpaper "$monitor" "$wallpaper_path"
+                    # Preload and set the wallpaper if the monitor exists
+                    hyprctl hyprpaper preload "$wallpaper_path"
+                    hyprctl hyprpaper wallpaper "$monitor,$wallpaper_path"
                 else
                     echo "Monitor $monitor is not connected."
                 fi
             fi
         done < "$last_wallpapers_file"
 
+        # Get the list of active wallpapers
         active_paths=$(hyprctl hyprpaper listactive | awk -F ' = ' '{print $2}')
+        # Get the list of loaded wallpapers
         loaded_paths=$(hyprctl hyprpaper listloaded | awk -F ' = ' '{print $2}')
 
+        # Unload wallpapers that are loaded but not active
         for loaded in $loaded_paths; do
             if ! echo "$active_paths" | grep -q "$loaded"; then
                 hyprctl hyprpaper unload "$loaded"
