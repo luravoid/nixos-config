@@ -7,6 +7,9 @@
       "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &"
       "poweralertd &"
 
+      # Polkit
+      "systemctl --user start hyprpolkitagent &"
+
       # Bar
       "waybar &"
 
@@ -32,9 +35,6 @@
 
       # Sprawn programs
       "[workspace 5 silent] obsidian"
-
-      # Polkit
-      "lxqt-policykit-agent"
 
       # Scripts
       "windowstate &"

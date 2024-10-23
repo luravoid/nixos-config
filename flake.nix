@@ -21,6 +21,8 @@
       url = "https://github.com/hyprwm/Hyprland";
       submodules = true;
     };
+
+    hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
   
     home-manager = {
       url = "github:nix-community/home-manager";

@@ -12,7 +12,7 @@
     glib
     wayland
     direnv
-    lxqt.lxqt-policykit
+    inputs.hyprpolkitagent.packages.${pkgs.system}.hyprpolkitagent
     swappy
     #wl-clip-persist
   ];
